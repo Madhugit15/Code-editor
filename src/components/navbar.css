@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.editor_top_content {
+  margin-top: 20px;
+}
+.editor_heading h2 {
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color:#283739;
+}
+.editor_nav {
+  width: 90%;
+  margin: auto;
+  /* background-color: #393E46; */
+  background-color: #4c4f52;
+  margin-top: 20px;
+}
+
+.editor_nav ul li {
+  display: inline-block;
+  padding: 15px 20px 15px 20px;
+}
+.editor_nav ul li:hover{
+    background-color: #222831;
+    transition: .5s all linear;
+}
+.editor_nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color:#F7F7F7;
+  
+}
