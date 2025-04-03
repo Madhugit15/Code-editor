@@ -34,3 +34,12 @@
   color:#F7F7F7;
   
 }
+.preview{
+  width:90%;
+  margin:auto;
+  height:500px;
+  border:1px solid grey;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

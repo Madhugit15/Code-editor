@@ -79,7 +79,7 @@ const Editor = () => {
               "image",
               "video",
             ],
-            ["removeFormat", "preview", "codeView", "horizontalRule"],
+            ["removeFormat", "horizontalRule"],
             ["subscript", "superscript", "blockquote"],
           ],
           font: [
@@ -109,9 +109,9 @@ const Editor = () => {
         }}
         onChange={(content)=>{if(content){
           setContent( content)
-        } else{
-          setContent()
-        }}}
+          
+        } 
+        }}
       />
       
     </div>

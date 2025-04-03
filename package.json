@@ -10,10 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "^7.17.3",
+    "@mantine/prism": "^6.0.22",
     "codemirror": "^5.65.19",
+    "highlight.js": "^11.11.1",
+    "highlightjs-line-numbers.js": "^2.9.0",
     "react": "^19.0.0",
+    "react-codemirror": "^1.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.1",
+    "react-syntax-highlighter": "^15.6.1",
     "suneditor": "^2.47.5",
     "suneditor-react": "^3.6.1"
   },

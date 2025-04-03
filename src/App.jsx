@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import { createContext } from "react";
 import HtmlContent from "./components/HtmlContent";
+import Preview from "./components/Preview";
 
 export const htmlCode = createContext()
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
       <Route  path="/" element={<Editor />}/>
       <Route  path="/html" element={<HtmlContent />}/>
+      <Route  path="/preview" element={<Preview/>}/>
       </Routes>
       
     </Fragment>

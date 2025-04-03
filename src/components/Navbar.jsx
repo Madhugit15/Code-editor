@@ -11,7 +11,7 @@ function Navbar() {
         <ul>
             <li> <NavLink to="/"> EDITOR</NavLink> </li>
             <li><NavLink to="/html">HTML</NavLink></li>
-            <li><NavLink to="/">PREVIEW</NavLink></li>
+            <li><NavLink to="/preview">PREVIEW</NavLink></li>
             
             
         </ul>
