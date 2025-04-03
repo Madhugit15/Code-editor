@@ -6,7 +6,7 @@ function Preview() {
     const {Content}=useContext(htmlCode)
   return (
     <div className="preview">
-<div dangerouslySetInnerHTML={{ __html: Content }} />
+<div dangerouslySetInnerHTML={{ __html: Content }}  />
     </div>
     
   )

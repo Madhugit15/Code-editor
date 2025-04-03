@@ -7,7 +7,7 @@ import "./navbar.css";
 
 function HtmlContent() {
   const { Content } = useContext(htmlCode);
-  const codeRef = useRef(null);
+ 
 
   return (
     <div
