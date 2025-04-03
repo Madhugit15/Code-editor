@@ -4,9 +4,7 @@ import plugins from "suneditor/src/plugins";
 
 import "suneditor/dist/css/suneditor.min.css";
 
-import CodeMirror from "codemirror";
-import "codemirror/lib/codemirror.css";
-import "codemirror/mode/htmlmixed/htmlmixed";
+
 import { htmlCode } from "../App";
 import "./navbar.css";
 
@@ -102,7 +100,7 @@ const Editor = () => {
           ],
           placeholder: "Start typing here...",
           charCounter: false,
-          codeMirror: CodeMirror,
+         
           attributesWhitelist: {
             span: "style",
           },
