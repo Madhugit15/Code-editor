@@ -35,11 +35,17 @@
   
 }
 .preview{
-  width:90%;
+  width:88%;
   margin:auto;
   height:500px;
   border:1px solid grey;
   overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  
+  font-size: 13px;
+  padding:13px;
+  font-family:  Helvetica Neue;
+        color:#333;
+}
+.sun-editor-editable p {
+  line-height: 0.5;
 }

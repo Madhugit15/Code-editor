@@ -8,14 +8,14 @@ import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed";
 import { htmlCode } from "../App";
+import "./navbar.css";
+
 
 const Editor = () => {
   const editorRef = useRef(null);
- const {setContent}=useContext(htmlCode)
+  const { setContent,Content } = useContext(htmlCode);
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
-    
-  
   };
 
   const fontWeightPlugin = {
@@ -56,9 +56,10 @@ const Editor = () => {
   const allPlugins = [...Object.values(plugins), fontWeightPlugin];
 
   return (
-    <div style={{ width: "90%", margin: "auto",marginBottom:"25px" }}>
+    <div style={{ width: "90%", margin: "auto", marginBottom: "25px" }}>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
+        defaultValue={Content}
         height="450"
         setOptions={{
           plugins: allPlugins,
@@ -100,20 +101,19 @@ const Editor = () => {
             "Helvetica",
           ],
           placeholder: "Start typing here...",
-          charCounter: true,
+          charCounter: false,
           codeMirror: CodeMirror,
           attributesWhitelist: {
             span: "style",
           },
           tagsWhitelist: "span|p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
         }}
-        onChange={(content)=>{if(content){
-          setContent( content)
-          
-        } 
+        onChange={(content) => {
+          if (content) {
+            setContent(content);
+          }
         }}
       />
-      
     </div>
   );
 };

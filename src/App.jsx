@@ -1,4 +1,4 @@
-import  { Fragment,useState } from "react";
+import  { Fragment,useEffect,useState } from "react";
 import Editor from "./components/Editor";
 import Navbar from "./components/Navbar";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
@@ -8,7 +8,14 @@ import Preview from "./components/Preview";
 
 export const htmlCode = createContext()
 function App() {
-   const[Content,setContent]=useState()
+const [Content, setContent] = useState(() => {
+  return localStorage.getItem("items") || "";
+  });
+
+  // Update localStorage whenever Content changes
+  useEffect(() => {
+    localStorage.setItem("items", Content);
+  }, [Content]);
   return (
     <htmlCode.Provider value={{Content,setContent}}>
 <BrowserRouter>
