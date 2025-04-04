@@ -11,11 +11,11 @@ import "./navbar.css";
 
 const Editor = () => {
   const editorRef = useRef(null);
-  const { setContent,Content } = useContext(htmlCode);
+  const { Content,changeContent } = useContext(htmlCode);
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
   };
-
+  
   const fontWeightPlugin = {
     name: "fontWeight",
     display: "submenu",
@@ -31,7 +31,7 @@ const Editor = () => {
       const listDiv = core.util.createElement("div");
       listDiv.className = "se-submenu se-list-layer";
 
-      const weights = ["100", "300", "400", "500", "700", "900", "none"];
+      const weights = ["normal","100", "300", "400", "500", "700", "900", ];
       let list = '<div class="se-list-inner">';
       weights.forEach((weight) => {
         list += `<button type="button" class="se-btn-list" data-value="${weight}" style="font-weight: ${weight};">${weight}</button>`;
@@ -58,6 +58,7 @@ const Editor = () => {
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
         defaultValue={Content}
+        defaul
         height="450"
         setOptions={{
           plugins: allPlugins,
@@ -106,12 +107,9 @@ const Editor = () => {
           },
           tagsWhitelist: "span|p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
         }}
-        onChange={(content) => {
-          if (content) {
-            setContent(content);
-          }
-        }}
+        onChange={(content)=>{changeContent(content)}}
       />
+      
     </div>
   );
 };

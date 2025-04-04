@@ -9,9 +9,9 @@ function Navbar() {
       </div>
       <div className="editor_nav">
         <ul>
-            <li> <NavLink to="/"> EDITOR</NavLink> </li>
-            <li><NavLink to="/html">HTML</NavLink></li>
-            <li><NavLink to="/preview">PREVIEW</NavLink></li>
+        <NavLink to="/">  <li> EDITOR </li></NavLink>
+        <NavLink to="/html"> <li>HTML</li></NavLink>
+        <NavLink to="/preview">   <li>PREVIEW</li></NavLink>
             
             
         </ul>
