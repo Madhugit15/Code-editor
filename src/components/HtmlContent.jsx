@@ -7,7 +7,7 @@ import { htmlCode } from "../App";
 import "ace-builds/src-noconflict/theme-textmate"; 
 ;
 
-import "ace-builds/src-noconflict/theme-monokai"; 
+// import "ace-builds/src-noconflict/theme-monokai"; 
 import "ace-builds/src-noconflict/ext-language_tools"; 
 
 function HtmlEditor() {
@@ -38,7 +38,7 @@ function HtmlEditor() {
         setOptions={{
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
-          enableSnippets: false,
+          enableSnippets: true,
           showLineNumbers: true,
           tabSize: 2,
         }}
