@@ -40,9 +40,9 @@ const Editor = () => {
       listDiv.querySelectorAll("button").forEach((button) => {
         button.addEventListener("click", () => {
           if (button.innerHTML === "Default") {
-            core.nodeChange(null, ["font-weight"], ["span"], true);
+            core.nodeChange(null, ["font-weight"], ["strong"], true);
           } else {
-            const newNode = core.util.createElement("SPAN");
+            const newNode = core.util.createElement("strong");
             newNode.style.fontWeight = button.getAttribute("data-value");
             core.nodeChange(newNode, ["font-weight"], null, null);
           }
@@ -101,11 +101,12 @@ const Editor = () => {
           ],
 
           charCounter: false,
-
+          pasteTagsBlacklist: "style",
+          pasteAttributesBlacklist: "style",
           attributesWhitelist: {
-            span: "style",
+            strong: "style",
           },
-          tagsWhitelist: "span|p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
+          tagsWhitelist: "strong|p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
         }}
         onChange={(content) => {
           changeContent(content);

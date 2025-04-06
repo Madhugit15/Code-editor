@@ -14,7 +14,7 @@ const [Content, setContent] = useState(() => {
   return localStorage.getItem("items") || "";
   });
   const sanitizedContent= DOMPurify.sanitize(Content)
-  // Update localStorage whenever Content changes
+
   useEffect(() => {
     localStorage.setItem("items", Content);
   }, [Content]);
