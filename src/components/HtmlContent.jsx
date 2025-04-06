@@ -45,6 +45,7 @@ function HtmlEditor() {
           enableSnippets: true,
           showLineNumbers: true,
           tabSize: 2,
+          wrap:true
         }}
       />
     </div>

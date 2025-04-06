@@ -40,9 +40,9 @@ const Editor = () => {
       listDiv.querySelectorAll("button").forEach((button) => {
         button.addEventListener("click", () => {
           if (button.innerHTML === "Default") {
-            core.nodeChange(null, ["font-weight"], ["strong"], true);
+            core.nodeChange(null, ["font-weight"], ["b"], true);
           } else {
-            const newNode = core.util.createElement("strong");
+            const newNode = core.util.createElement("b");
             newNode.style.fontWeight = button.getAttribute("data-value");
             core.nodeChange(newNode, ["font-weight"], null, null);
           }
@@ -59,9 +59,11 @@ const Editor = () => {
     <div style={{ width: "90%", margin: "auto", marginBottom: "25px" }}>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
-        defaultValue={Content}
+       setContents={Content}
+        setDefaultStyle="border-radius:15px"
         height="450"
         setOptions={{
+          
           plugins: allPlugins,
           buttonList: [
             ["undo", "redo", "bold", "italic", "underline", "strike"],
@@ -102,11 +104,12 @@ const Editor = () => {
 
           charCounter: false,
           pasteTagsBlacklist: "style",
-          pasteAttributesBlacklist: "style",
+          
+        
           attributesWhitelist: {
-            strong: "style",
+            b: "style",
           },
-          tagsWhitelist: "strong|p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
+          tagsWhitelist: "p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
         }}
         onChange={(content) => {
           changeContent(content);
