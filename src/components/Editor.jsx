@@ -1,9 +1,7 @@
 import React, { useContext, useRef } from "react";
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
-
 import "suneditor/dist/css/suneditor.min.css";
-
 import { htmlCode } from "../App";
 import "./navbar.css";
 
@@ -40,9 +38,9 @@ const Editor = () => {
       listDiv.querySelectorAll("button").forEach((button) => {
         button.addEventListener("click", () => {
           if (button.innerHTML === "Default") {
-            core.nodeChange(null, ["font-weight"], ["b"], true);
+            core.nodeChange(null, ["font-weight"], ["span"], true);
           } else {
-            const newNode = core.util.createElement("b");
+            const newNode = core.util.createElement("span");
             newNode.style.fontWeight = button.getAttribute("data-value");
             core.nodeChange(newNode, ["font-weight"], null, null);
           }
@@ -59,14 +57,13 @@ const Editor = () => {
     <div style={{ width: "90%", margin: "auto", marginBottom: "25px" }}>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
-       setContents={Content}
+        setContents={Content}
         setDefaultStyle="border-radius:15px"
         height="450"
         setOptions={{
-          
           plugins: allPlugins,
           buttonList: [
-            ["undo", "redo", "bold", "italic", "underline", "strike"],
+            ["undo", "redo", "italic", "underline", "strike"],
             [
               "fontSize",
               "font",
@@ -104,12 +101,21 @@ const Editor = () => {
 
           charCounter: false,
           pasteTagsBlacklist: "style",
-          
-        
-          attributesWhitelist: {
-            b: "style",
+
+          attributesBlacklist: {
+            strong: "style",
           },
-          tagsWhitelist: "p|div|b|i|u|strong|em|u|s|strike|del|sub|sup",
+          PasteAttributesBlacklist: {
+            all: "style",
+          },
+
+          attributesWhitelist: {
+            span: "style",
+          },
+          TagsWhitelist: "span",
+
+          pasteTagsWhitelist:
+            "p|div|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li",
         }}
         onChange={(content) => {
           changeContent(content);

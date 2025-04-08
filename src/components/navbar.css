@@ -8,15 +8,16 @@
 .editor_heading h2 {
   text-align: center;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  font-size: 26px;
   color: #283739;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .editor_nav {
   width: 90%;
   margin: auto;
-
-  background-color: #4c4f52;
+  border-radius: 4px 4px 0px 0px;
+  background-color: #e6f0ff;
 }
 .editor_nav ul {
   display: flex;
@@ -26,43 +27,39 @@
   height: 40px;
 }
 .editor_nav ul li {
-  margin: 0px 10px;
+  margin: 0px 20px;
 }
 .editor_nav a:hover {
-  background-color: #656569;
+  background-color: #c6dbfe;
   height: 40px;
   transition: 0.5s all linear;
-
   display: grid;
   place-items: center;
 }
 .editor_nav a {
-  color: #f7f7f7;
   text-decoration: none;
   letter-spacing: 1px;
-}
-
-.active {
-  background-color: #222831;
-
-  height: 40px;
-  display: grid;
-  place-items: center;
+  border-radius: 4px;
 }
 
 .preview {
   width: 90%;
   margin: auto;
-  height: auto;
-  border: 1px solid grey;
+  height: 100vh;
+  border: 1px solid #dadada;
   margin-bottom: 25px;
 }
 
 .sun-editor-editable {
   padding: 15px;
 }
-.sun-editor-editable p {
-  line-height: 1.2;
+.sun-editor-editable img{
+  overflow: scroll;
   
 }
-
+.sun-editor {
+  border-radius: 0px 0px 4px 4px;
+}
+.sun-editor .se-resizing-bar {
+  border-radius: 0px 0px 4px 4px;
+}
