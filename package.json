@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "ace-builds": "^1.39.1",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/view": "^6.36.5",
+    "@uiw/codemirror-theme-github": "^4.23.10",
+    "@uiw/react-codemirror": "^4.23.10",
     "dompurify": "^3.2.5",
     "js-beautify": "^1.15.4",
     "react": "^19.0.0",
-    "react-ace": "^14.0.1",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.1",
     "suneditor": "^2.47.5",

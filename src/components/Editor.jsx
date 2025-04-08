@@ -100,13 +100,11 @@ const Editor = () => {
           ],
 
           charCounter: false,
-          pasteTagsBlacklist: "style",
 
           attributesBlacklist: {
             strong: "style",
-          },
-          PasteAttributesBlacklist: {
-            all: "style",
+            img: "style",
+            figure: "style",
           },
 
           attributesWhitelist: {
@@ -115,7 +113,7 @@ const Editor = () => {
           TagsWhitelist: "span",
 
           pasteTagsWhitelist:
-            "p|div|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li",
+            "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li",
         }}
         onChange={(content) => {
           changeContent(content);
