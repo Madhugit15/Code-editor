@@ -8,7 +8,6 @@ import Preview from "./components/Preview";
 import DOMPurify from "dompurify";
 import Common from "./components/Common";
 
-
 export const htmlCode = createContext();
 function App() {
   const [Content, setContent] = useState(() => {
@@ -25,22 +24,24 @@ function App() {
     }
   }
   return (
-    <htmlCode.Provider
-      value={{ Content, setContent, changeContent, sanitizedContent }}
-    >
-      <BrowserRouter>
-        <Fragment>
-          <Navbar />
-          <Common>
+   
+      <htmlCode.Provider
+        value={{ Content, setContent, changeContent, sanitizedContent }}
+      >
+        <BrowserRouter>
+          <Fragment>
+            <Navbar />
+            <Common>
             <Routes>
               <Route path="/" element={<Editor />} />
               <Route path="/html" element={<HtmlContent />} />
               <Route path="/preview" element={<Preview />} />
             </Routes>
-          </Common>
-        </Fragment>
-      </BrowserRouter>
-    </htmlCode.Provider>
+            </Common>
+          </Fragment>
+        </BrowserRouter>
+      </htmlCode.Provider>
+    
   );
 }
 

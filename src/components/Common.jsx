@@ -4,10 +4,10 @@ function Common({ children }) {
   return (
     <div
       style={{
-        height: "500px",
+        height: "600px",
         display: "flex",
         flexDirection: "column",
-        paddingBottom: "50px",
+       paddingBottom:"30px"
       }}
     >
       {children}

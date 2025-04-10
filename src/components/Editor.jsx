@@ -59,12 +59,12 @@ const Editor = () => {
         width: "90%",
         margin: "auto",
         height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
+        display:"flex",
+        flexDirection:"column",
+        flex:1
       }}
     >
-      <div style={{ flex: 1, overflow: "auto" }}>
+      <div style={{flex:1,overflowY:"auto",overflowX:"hidden",height:"100%"}}>
         <SunEditor
           getSunEditorInstance={getSunEditorInstance}
           setContents={Content}
