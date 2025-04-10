@@ -54,71 +54,90 @@ const Editor = () => {
   const allPlugins = [...Object.values(plugins), fontWeightPlugin];
 
   return (
-    <div style={{ width: "90%", margin: "auto", marginBottom: "25px" }}>
-      <SunEditor
-        getSunEditorInstance={getSunEditorInstance}
-        setContents={Content}
-        setDefaultStyle="border-radius:15px"
-        height="450"
-        setOptions={{
-          plugins: allPlugins,
-          buttonList: [
-            ["undo", "redo", "italic", "underline", "strike"],
-            [
-              "fontSize",
-              "font",
-              "formatBlock",
-              "fontWeight",
-              "fontColor",
+    <div
+      style={{
+        width: "90%",
+        margin: "auto",
+        marginBottom: "25px",
+        display: "flex",
+        flexDirection: "column",
+        flex: "1",
+        height: "100%",
+      }}
+    >
+      <div
+        style={{
+          flex: "1",
+          overflow: "auto",
 
-              "hiliteColor",
+          height: "100%",
+        }}
+      >
+        <SunEditor
+          getSunEditorInstance={getSunEditorInstance}
+          setContents={Content}
+          setOptions={{
+            plugins: allPlugins,
 
-              "lineHeight",
-              "link",
-              "image",
-              "video",
+            buttonList: [
+              ["undo", "redo", "italic", "underline", "strike"],
+              [
+                "fontSize",
+                "font",
+                "formatBlock",
+                "fontWeight",
+                "fontColor",
+
+                "hiliteColor",
+
+                "lineHeight",
+                "link",
+                "image",
+                "video",
+              ],
+              ["removeFormat", "horizontalRule", "align", "list"],
+              ["subscript", "superscript", "blockquote"],
             ],
-            ["removeFormat", "horizontalRule", "align", "list"],
-            ["subscript", "superscript", "blockquote"],
-          ],
-          font: [
-            "Arial",
-            "Comic Sans MS",
-            "Courier New",
-            "Impact",
-            "Georgia",
-            "Tahoma",
-            "Trebuchet MS",
-            "Verdana",
-            "Logical",
-            "Salesforce Sans",
-            "Garamond",
-            "Sans-Serif",
-            "Serif",
-            "Times New Roman",
-            "Helvetica",
-          ],
+            font: [
+              "Arial",
+              "Comic Sans MS",
+              "Courier New",
+              "Impact",
+              "Georgia",
+              "Tahoma",
+              "Trebuchet MS",
+              "Verdana",
+              "Logical",
+              "Salesforce Sans",
+              "Garamond",
+              "Sans-Serif",
+              "Serif",
+              "Times New Roman",
+              "Helvetica",
+            ],
 
-          charCounter: false,
+            charCounter: false,
 
-          attributesBlacklist: {
-            strong: "style",
-            img: "style",
-            figure: "style",
-          },
+            attributesBlacklist: {
+              strong: "style",
+             
+              figure: "style",
+              p: "style",
+            },
 
-          attributesWhitelist: {
-            span: "style",
-          },
-          TagsWhitelist: "span",
+            attributesWhitelist: {
+              span: "style", //if we want to add styles to an element we can write it using span tag
+            },
+            TagsWhitelist: "span",
 
-          pasteTagsWhitelist:
-            "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li",
-        }}
-        onChange={(content) => {
-          changeContent(content);
-        }}
-      />
+            pasteTagsWhitelist:
+              "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure",
+          }}
+          onChange={(content) => {
+            changeContent(content);
+          }}
+        />
+      </div>
     </div>
   );
 };

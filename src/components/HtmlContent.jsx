@@ -4,7 +4,8 @@ import { html as beautifyHtml } from "js-beautify";
 import { htmlCode } from "../App";
 import { html } from "@codemirror/lang-html";
 import { githubLight } from "@uiw/codemirror-theme-github";
-import { EditorView } from '@codemirror/view';
+import { EditorView } from "@codemirror/view";
+import "./navbar.css";
 function HtmlEditor() {
   const { Content, changeContent } = useContext(htmlCode);
 
@@ -19,23 +20,25 @@ function HtmlEditor() {
       style={{
         width: "90%",
         margin: "auto",
+        height: "100%",
         border: "1px solid #dadada",
         borderRadius: "0px 0px 4px 4px",
-        
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <CodeMirror
         value={formattedContent}
-        height="500px"
-        
-        extensions={[html(),EditorView.lineWrapping]}
+        extensions={[html(), EditorView.lineWrapping]}
         theme={githubLight}
         onChange={(value) => changeContent(value)}
         basicSetup={{
           lineNumbers: true,
-         highlightActiveLine: true,
-        
+          highlightActiveLine: true,
+          autocompletion: true,
         }}
+        style={{ flex: 1 }}
       />
     </div>
   );

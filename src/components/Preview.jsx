@@ -9,8 +9,14 @@ import "./navbar.css";
 function Preview() {
   const { Content } = useContext(htmlCode);
   return (
-    <div className="preview">
-      <div className="sun-editor-editable ">
+    <div
+      className="preview"
+      style={{ flex: 1, display: "flex", flexDirection: "column" }}
+    >
+      <div
+        className="sun-editor-editable"
+        style={{ flex: 1, overflow: "auto" }}
+      >
         <div dangerouslySetInnerHTML={{ __html: Content }} />
       </div>
     </div>

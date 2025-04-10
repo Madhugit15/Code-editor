@@ -2,6 +2,16 @@
   margin: 0;
   padding: 0;
 }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f8f8f8fa;
+}
 .editor_top_content {
   margin-top: 20px;
 }
@@ -45,21 +55,27 @@
 .preview {
   width: 90%;
   margin: auto;
-  height: auto;
-  border: 1px solid #dadada;
-  margin-bottom: 25px;
-}
+  height: 100%;
 
-.sun-editor-editable {
-  padding: 15px;
+ 
 }
-.sun-editor-editable img{
+.preview img {
   overflow: scroll;
-  
+}
+.sun-editor-editable {
+  border: 1px solid #dadada;
+  height:100%;
+}
+.sun-editor-editable img {
+  overflow: scroll;
 }
 .sun-editor {
   border-radius: 0px 0px 4px 4px;
 }
 .sun-editor .se-resizing-bar {
   border-radius: 0px 0px 4px 4px;
+}
+
+.ͼ1 {
+  height: 100%;
 }

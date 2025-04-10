@@ -6,6 +6,8 @@ import { createContext } from "react";
 import HtmlContent from "./components/HtmlContent";
 import Preview from "./components/Preview";
 import DOMPurify from "dompurify";
+import Common from "./components/Common";
+
 
 export const htmlCode = createContext();
 function App() {
@@ -29,11 +31,13 @@ function App() {
       <BrowserRouter>
         <Fragment>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Editor />} />
-            <Route path="/html" element={<HtmlContent />} />
-            <Route path="/preview" element={<Preview />} />
-          </Routes>
+          <Common>
+            <Routes>
+              <Route path="/" element={<Editor />} />
+              <Route path="/html" element={<HtmlContent />} />
+              <Route path="/preview" element={<Preview />} />
+            </Routes>
+          </Common>
         </Fragment>
       </BrowserRouter>
     </htmlCode.Provider>
