@@ -58,23 +58,17 @@ const Editor = () => {
       style={{
         width: "90%",
         margin: "auto",
-        marginBottom: "25px",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
-        flex: "1",
-        height: "100%",
+        flex: 1,
       }}
     >
-      <div
-        style={{
-          flex: "1",
-          overflow: "auto",
-          overflowX: "hidden",
-        }}
-      >
+      <div style={{ flex: 1, overflow: "auto" }}>
         <SunEditor
           getSunEditorInstance={getSunEditorInstance}
           setContents={Content}
+          height="auto"
           setOptions={{
             plugins: allPlugins,
 
@@ -116,7 +110,7 @@ const Editor = () => {
             ],
 
             charCounter: false,
-
+            resizeEnable: true,
             attributesBlacklist: {
               strong: "style",
               div: "style",
@@ -127,10 +121,10 @@ const Editor = () => {
               h5: "style",
               h6: "style",
               figure: "style",
-              p: "style",
-              ul:"style",
-              ol:"style",
-              li:"style"
+
+              ul: "style",
+              ol: "style",
+              li: "style",
             },
 
             attributesWhitelist: {
