@@ -69,8 +69,7 @@ const Editor = () => {
         style={{
           flex: "1",
           overflow: "auto",
-
-          height: "100%",
+          overflowX: "hidden",
         }}
       >
         <SunEditor
@@ -120,9 +119,18 @@ const Editor = () => {
 
             attributesBlacklist: {
               strong: "style",
-             
+              div: "style",
+              h1: "style",
+              h2: "style",
+              h3: "style",
+              h4: "style",
+              h5: "style",
+              h6: "style",
               figure: "style",
               p: "style",
+              ul:"style",
+              ol:"style",
+              li:"style"
             },
 
             attributesWhitelist: {
