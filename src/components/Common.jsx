@@ -4,7 +4,7 @@ function Common({ children }) {
   return (
     <div
       style={{
-        height: "600px",
+        height: "500px",
         display: "flex",
         flexDirection: "column",
        paddingBottom:"30px"
