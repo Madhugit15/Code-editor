@@ -150,7 +150,7 @@ body {
   border-radius: 0px 0px 4px 4px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  padding: 13px;
+  padding: 14px;
 }
 .sun-editor-editable img {
   overflow: scroll;
@@ -170,7 +170,7 @@ body {
   height: 100%;
 }
 .ͼ1 .cm-scroller {
-  padding: 13px;
+  padding: 14px;
 }
 .sun-editor .se-toolbar  {
   position: sticky ;
