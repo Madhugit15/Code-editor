@@ -172,6 +172,10 @@ body {
 .ͼ1 .cm-scroller {
   padding: 13px;
 }
+.sun-editor .se-toolbar  {
+  position: sticky ;
+  top: 0;
+}
 
 @media screen and (max-width: 346px) {
   .editor_nav ul li {
