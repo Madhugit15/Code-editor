@@ -26,6 +26,7 @@ function HtmlEditor() {
         overflow: "auto",
         display: "flex",
         flexDirection: "column",
+        fontFamily:"Poppins, sans-serif"
       }}
     >
       <CodeMirror

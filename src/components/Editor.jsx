@@ -59,12 +59,19 @@ const Editor = () => {
         width: "90%",
         margin: "auto",
         height: "100%",
-        display:"flex",
-        flexDirection:"column",
-        flex:1
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
       }}
     >
-      <div style={{flex:1,overflowY:"auto",overflowX:"hidden",height:"100%"}}>
+      <div
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          overflowX: "hidden",
+          height: "100%",
+        }}
+      >
         <SunEditor
           getSunEditorInstance={getSunEditorInstance}
           setContents={Content}
@@ -92,23 +99,37 @@ const Editor = () => {
               ["subscript", "superscript", "blockquote"],
             ],
             font: [
-              "Arial",
-              "Comic Sans MS",
-              "Courier New",
-              "Impact",
-              "Georgia",
-              "Tahoma",
-              "Trebuchet MS",
-              "Verdana",
-              "Logical",
-              "Salesforce Sans",
-              "Garamond",
-              "Sans-Serif",
-              "Serif",
-              "Times New Roman",
-              "Helvetica",
+              "Roboto",
+              "Open Sans",
+              "Lato",
+              "Montserrat",
+              "Oswald",
+              "Poppins",
+              "Raleway",
+              "Noto Sans",
+              "Roboto Condensed",
+              "PT Sans",
+              "Source Sans Pro",
+              "Nunito",
+              "Work Sans",
+              "Ubuntu",
+              "Fira Sans",
+              "Inter",
+              "Mukta",
+              "Titillium Web",
+              "Quicksand",
+              "Karla",
+              "Slabo 27px",
+              "Merriweather",
+              "Playfair Display",
+              "Lora",
+              "Bitter",
+              "Libre Baskerville",
+              "Arvo",
+              "Cormorant Garamond",
+              "Dancing Script",
+              "Josefin Sans",
             ],
-
             charCounter: false,
             resizeEnable: true,
             attributesBlacklist: {
