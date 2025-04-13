@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { html as beautifyHtml } from "js-beautify";
-import { htmlCode } from "../App";
+import { htmlCode } from "./HtmlEditor";
 import { html } from "@codemirror/lang-html";
 import { githubLight } from "@uiw/codemirror-theme-github";
 import { EditorView } from "@codemirror/view";
 import "./navbar.css";
-function HtmlEditor() {
+function HtmlContent() {
   const { Content, changeContent } = useContext(htmlCode);
 
   const formattedContent = beautifyHtml(Content, {
@@ -26,7 +26,7 @@ function HtmlEditor() {
         overflow: "auto",
         display: "flex",
         flexDirection: "column",
-        fontFamily:"Poppins, sans-serif"
+        fontFamily: "Poppins, sans-serif",
       }}
     >
       <CodeMirror
@@ -45,4 +45,4 @@ function HtmlEditor() {
   );
 }
 
-export default HtmlEditor;
+export default HtmlContent;

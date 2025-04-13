@@ -58,36 +58,6 @@
 /* 20. Karla */
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
 
-/* 21. Slabo 27px */
-@import url("https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap");
-
-/* 22. Merriweather */
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap");
-
-/* 23. Playfair Display */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
-
-/* 24. Lora */
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
-
-/* 25. Bitter */
-@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500;600;700;800;900&display=swap");
-
-/* 26. Libre Baskerville */
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
-
-/* 27. Arvo */
-@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
-
-/* 28. Cormorant Garamond */
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap");
-
-/* 29. Dancing Script */
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
-
-/* 30. Josefin Sans */
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -96,15 +66,14 @@
 body {
   background-color: #f8f8f8fa;
 }
-.editor_top_content {
-  margin-top: 20px;
-}
+
 .editor_heading h2 {
   text-align: center;
   font-weight: 500;
   letter-spacing: 1px;
   font-size: 26px;
   color: #283739;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
 .editor_nav {
@@ -172,8 +141,8 @@ body {
 .ͼ1 .cm-scroller {
   padding: 14px;
 }
-.sun-editor .se-toolbar  {
-  position: sticky ;
+.sun-editor .se-toolbar {
+  position: sticky;
   top: 0;
 }
 

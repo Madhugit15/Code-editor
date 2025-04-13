@@ -4,9 +4,6 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   return (
     <div className="editor_top_content">
-      <div className="editor_heading">
-        <h2>Online Text Editor</h2>
-      </div>
       <div className="editor_nav">
         <ul>
           <NavLink

@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
-import { htmlCode } from "../App";
+import { htmlCode } from "./HtmlEditor";
 import "./navbar.css";
 
 const Editor = () => {
@@ -11,6 +11,8 @@ const Editor = () => {
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
   };
+
+  //CUSTOM FONTWEIGHT//
 
   const fontWeightPlugin = {
     name: "fontWeight",
@@ -51,6 +53,7 @@ const Editor = () => {
       return listDiv;
     },
   };
+
   const allPlugins = [...Object.values(plugins), fontWeightPlugin];
 
   return (
@@ -74,7 +77,7 @@ const Editor = () => {
       >
         <SunEditor
           getSunEditorInstance={getSunEditorInstance}
-          setContents={Content}
+          defaultValue={Content}
           height="auto"
           setOptions={{
             plugins: allPlugins,
@@ -119,20 +122,11 @@ const Editor = () => {
               "Titillium Web",
               "Quicksand",
               "Karla",
-              "Slabo 27px",
-              "Merriweather",
-              "Playfair Display",
-              "Lora",
-              "Bitter",
-              "Libre Baskerville",
-              "Arvo",
-              "Cormorant Garamond",
-              "Dancing Script",
-              "Josefin Sans",
             ],
-            charCounter: false,
+           
             resizeEnable: true,
             attributesBlacklist: {
+              //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
               strong: "style",
               div: "style",
               h1: "style",
@@ -153,6 +147,7 @@ const Editor = () => {
             },
             TagsWhitelist: "span",
 
+            //used for controlling which tags should be seen HTML PAGE while pasting the content in the editor
             pasteTagsWhitelist:
               "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure",
           }}

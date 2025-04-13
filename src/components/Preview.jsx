@@ -1,11 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import { htmlCode } from "../App";
-import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
-
 import "./navbar.css";
+import { htmlCode } from "./HtmlEditor";
+
 function Preview() {
   const { Content } = useContext(htmlCode);
   return (
