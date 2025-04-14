@@ -14,7 +14,7 @@ function Preview() {
     >
       <div
         className="sun-editor-editable"
-        style={{ flex: 1, overflow: "auto" }}
+        style={{ flex: 1, overflow: "auto",overflowX:"hidden" }}
       >
         <div dangerouslySetInnerHTML={{ __html: Content }} />
       </div>

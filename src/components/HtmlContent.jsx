@@ -26,7 +26,7 @@ function HtmlContent() {
         overflow: "auto",
         display: "flex",
         flexDirection: "column",
-        fontFamily: "Poppins, sans-serif",
+        
       }}
     >
       <CodeMirror
@@ -39,7 +39,7 @@ function HtmlContent() {
           highlightActiveLine: true,
           autocompletion: true,
         }}
-        style={{ flex: 1 }}
+        style={{ flex: 1,fontFamily: "Poppins, sans-serif", }}
       />
     </div>
   );

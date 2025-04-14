@@ -7,18 +7,26 @@ import Navbar from "./Navbar";
 //Context api for global state management
 export const htmlCode = createContext();
 
-function HtmlEditor({ children , showNav = true }) {
+function HtmlEditor({ children, showNav = true, onChange, onClick }) {
   const [Content, setContent] = useState(() => {
     return localStorage.getItem("items") || ""; //get the content stored in local storage
   });
 
   useEffect(() => {
     localStorage.setItem("items", Content); // stores the content which changes during onchange event in the local storage
-  }, [Content]);
+    if (onChange) {
+      onChange(Content);
+    }
+  }, [Content, onChange]);
 
   function changeContent(content) {
     if (content) {
       setContent(content);
+    }
+  }
+  function handleClick(event) {
+    if (onClick) {
+      onClick(event);
     }
   }
 
@@ -29,7 +37,7 @@ function HtmlEditor({ children , showNav = true }) {
       </div>
       <htmlCode.Provider value={{ Content, setContent, changeContent }}>
         <BrowserRouter>
-         {showNav && <Navbar />}
+          {showNav && <Navbar />}
           <div
             style={{
               height: "500px",
@@ -37,6 +45,7 @@ function HtmlEditor({ children , showNav = true }) {
               flexDirection: "column",
               paddingBottom: "30px",
             }}
+            onClick={handleClick}
           >
             {children}
           </div>
