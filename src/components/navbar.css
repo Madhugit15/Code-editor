@@ -89,19 +89,32 @@ body {
   align-items: center;
   height: 40px;
 }
-.editor_nav ul li {
-  margin: 0px 20px;
+
+.editor_nav ul li:hover {
+  cursor: pointer;
 }
-.editor_nav a:hover {
-  background-color: #c6dbfe;
+.active {
+  color: #fff;
+  background: #006ef4;
   height: 40px;
-  transition: 0.5s all linear;
   display: grid;
   place-items: center;
+  border-radius: 3px;
+  padding: 0px 20px;
 }
-.editor_nav a {
-  text-decoration: none;
+.nav {
+  color: #006ef4;
+  display: grid;
+  padding: 0px 20px;
   letter-spacing: 1px;
+}
+.nav:hover {
+  background-color: #c6dbfe;
+  transition: 0.2s all linear;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0px 20px;
   border-radius: 4px;
 }
 
@@ -147,11 +160,8 @@ body {
 }
 
 @media screen and (max-width: 346px) {
-  .editor_nav ul li {
-    margin: 0px 15px;
-  }
-
-  .editor_nav a {
-    font-size: 12px;
+  .nav {
+    padding: 0px 10px;
+    font-size: 13px;
   }
 }

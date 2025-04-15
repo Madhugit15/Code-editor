@@ -5,9 +5,10 @@ import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "./HtmlEditor";
 import "./navbar.css";
 
-const Editor = () => {
+const Editor = ({ onChange, value, onClick }) => {
+  const { Editor } = useContext(htmlCode);
   const editorRef = useRef(null);
-  const { Content, changeContent } = useContext(htmlCode);
+  // const { Content, changeContent } = useContext(htmlCode);
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
   };
@@ -57,106 +58,109 @@ const Editor = () => {
   const allPlugins = [...Object.values(plugins), fontWeightPlugin];
 
   return (
-    <div
-      style={{
-        width: "90%",
-        margin: "auto",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          overflowX: "hidden",
-          height: "100%",
-        }}
-      >
-        <SunEditor
-          getSunEditorInstance={getSunEditorInstance}
-          defaultValue={Content}
-          height="auto"
-          setOptions={{
-            plugins: allPlugins,
-
-            buttonList: [
-              ["undo", "redo", "italic", "underline", "strike"],
-              [
-                "fontSize",
-                "font",
-                "formatBlock",
-                "fontWeight",
-                "fontColor",
-
-                "hiliteColor",
-
-                "lineHeight",
-                "link",
-                "image",
-                "video",
-              ],
-              ["removeFormat", "horizontalRule", "align", "list"],
-              ["subscript", "superscript", "blockquote"],
-            ],
-            font: [
-              "Roboto",
-              "Open Sans",
-              "Lato",
-              "Montserrat",
-              "Oswald",
-              "Poppins",
-              "Raleway",
-              "Noto Sans",
-              "Roboto Condensed",
-              "PT Sans",
-              "Source Sans Pro",
-              "Nunito",
-              "Work Sans",
-              "Ubuntu",
-              "Fira Sans",
-              "Inter",
-              "Mukta",
-              "Titillium Web",
-              "Quicksand",
-              "Karla",
-            ],
-           
-            resizeEnable: true,
-            attributesBlacklist: {
-              //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
-              strong: "style",
-              div: "style",
-              h1: "style",
-              h2: "style",
-              h3: "style",
-              h4: "style",
-              h5: "style",
-              h6: "style",
-              figure: "style",
-
-              ul: "style",
-              ol: "style",
-              li: "style",
-            },
-
-            attributesWhitelist: {
-              span: "style", //if we want to add styles to an element we can write it using span tag
-            },
-            TagsWhitelist: "span",
-
-            //used for controlling which tags should be seen HTML PAGE while pasting the content in the editor
-            pasteTagsWhitelist:
-              "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure",
+    <>
+      {Editor && (
+        <div
+          style={{
+            width: "90%",
+            margin: "auto",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
           }}
-          onChange={(content) => {
-            changeContent(content);
-          }}
-        />
-      </div>
-    </div>
+        >
+          <div
+            onClick={onClick}
+            style={{
+              flex: 1,
+              overflowY: "auto",
+              overflowX: "hidden",
+              height: "100%",
+            }}
+          >
+            <SunEditor
+              getSunEditorInstance={getSunEditorInstance}
+              defaultValue={value}
+              height="auto"
+              setOptions={{
+                plugins: allPlugins,
+
+                buttonList: [
+                  ["undo", "redo", "italic", "underline", "strike"],
+                  [
+                    "fontSize",
+                    "font",
+                    "formatBlock",
+                    "fontWeight",
+                    "fontColor",
+
+                    "hiliteColor",
+
+                    "lineHeight",
+                    "link",
+                    "image",
+                    "video",
+                  ],
+                  ["removeFormat", "horizontalRule", "align", "list"],
+                  ["subscript", "superscript", "blockquote"],
+                ],
+                font: [
+                  "Roboto",
+                  "Open Sans",
+                  "Lato",
+                  "Montserrat",
+                  "Oswald",
+                  "Poppins",
+                  "Raleway",
+                  "Noto Sans",
+                  "Roboto Condensed",
+                  "PT Sans",
+                  "Source Sans Pro",
+                  "Nunito",
+                  "Work Sans",
+                  "Ubuntu",
+                  "Fira Sans",
+                  "Inter",
+                  "Mukta",
+                  "Titillium Web",
+                  "Quicksand",
+                  "Karla",
+                ],
+
+                resizeEnable: true,
+                attributesBlacklist: {
+                  //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
+                  strong: "style",
+                  div: "style",
+                  h1: "style",
+                  h2: "style",
+                  h3: "style",
+                  h4: "style",
+                  h5: "style",
+                  h6: "style",
+                  figure: "style",
+
+                  ul: "style",
+                  ol: "style",
+                  li: "style",
+                },
+
+                attributesWhitelist: {
+                  span: "style", //if we want to add styles to an element we can write it using span tag
+                },
+                TagsWhitelist: "span",
+
+                //used for controlling which tags should be seen HTML PAGE while pasting the content in the editor
+                pasteTagsWhitelist:
+                  "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure",
+              }}
+              onChange={onChange}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

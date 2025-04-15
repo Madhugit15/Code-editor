@@ -1,24 +1,28 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useContext } from "react";
 import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
 import "./navbar.css";
 import { htmlCode } from "./HtmlEditor";
 
-function Preview() {
-  const { Content } = useContext(htmlCode);
+function Preview({ value }) {
+  const { Preview } = useContext(htmlCode);
   return (
-    <div
-      className="preview"
-      style={{ flex: 1, display: "flex", flexDirection: "column" }}
-    >
-      <div
-        className="sun-editor-editable"
-        style={{ flex: 1, overflow: "auto",overflowX:"hidden" }}
-      >
-        <div dangerouslySetInnerHTML={{ __html: Content }} />
-      </div>
-    </div>
+    <Fragment>
+      {Preview && (
+        <div
+          className="preview"
+          style={{ flex: 1, display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="sun-editor-editable"
+            style={{ flex: 1, overflow: "auto", overflowX: "hidden" }}
+          >
+            <div dangerouslySetInnerHTML={{ __html: value }} />
+          </div>
+        </div>
+      )}
+    </Fragment>
   );
 }
 
