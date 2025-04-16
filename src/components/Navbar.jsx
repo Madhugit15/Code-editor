@@ -25,7 +25,7 @@ function Navbar() {
       <div className="editor_nav">
         <ul>
           <li onClick={showEditor} className={Editor ? "active" : "nav"}>
-            EDITOR
+            WORD
           </li>
           <li onClick={showHtml} className={Html ? "active" : "nav"}>
             HTML

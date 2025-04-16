@@ -5,20 +5,14 @@ import "suneditor/dist/css/suneditor.min.css";
 import "./navbar.css";
 import { htmlCode } from "./HtmlEditor";
 
-function Preview({ value }) {
-  const { Preview } = useContext(htmlCode);
+function Preview() {
+  const { Preview, Content } = useContext(htmlCode);
   return (
     <Fragment>
       {Preview && (
-        <div
-          className="preview"
-          style={{ flex: 1, display: "flex", flexDirection: "column" }}
-        >
-          <div
-            className="sun-editor-editable"
-            style={{ flex: 1, overflow: "auto", overflowX: "hidden" }}
-          >
-            <div dangerouslySetInnerHTML={{ __html: value }} />
+        <div className="preview">
+          <div className="sun-editor-editable ">
+            <div dangerouslySetInnerHTML={{ __html: Content }} />
           </div>
         </div>
       )}

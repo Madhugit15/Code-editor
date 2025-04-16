@@ -5,10 +5,10 @@ import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "./HtmlEditor";
 import "./navbar.css";
 
-const Editor = ({ onChange, value, onClick }) => {
-  const { Editor } = useContext(htmlCode);
+const Editor = () => {
+  const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
-  // const { Content, changeContent } = useContext(htmlCode);
+
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
   };
@@ -65,27 +65,19 @@ const Editor = ({ onChange, value, onClick }) => {
             width: "90%",
             margin: "auto",
             height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
+            border: "1px solid #b1b1b1",
+            overflow: "auto",
+            borderRadius: "4px",
           }}
         >
           <div
-            onClick={onClick}
-            style={{
-              flex: 1,
-              overflowY: "auto",
-              overflowX: "hidden",
-              height: "100%",
-            }}
+            style={{ overflow: "auto", overflowX: "hidden", height: "100%" }}
           >
             <SunEditor
               getSunEditorInstance={getSunEditorInstance}
-              defaultValue={value}
-              height="auto"
+              defaultValue={Content}
               setOptions={{
                 plugins: allPlugins,
-
                 buttonList: [
                   ["undo", "redo", "italic", "underline", "strike"],
                   [
@@ -147,15 +139,16 @@ const Editor = ({ onChange, value, onClick }) => {
                 },
 
                 attributesWhitelist: {
-                  span: "style", //if we want to add styles to an element we can write it using span tag
+                  span: "style",
+                  //if we want to add styles to an element we can write it using span tag
                 },
                 TagsWhitelist: "span",
 
                 //used for controlling which tags should be seen HTML PAGE while pasting the content in the editor
                 pasteTagsWhitelist:
-                  "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure",
+                  "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure|iframe|video",
               }}
-              onChange={onChange}
+              onChange={onEditorChange}
             />
           </div>
         </div>

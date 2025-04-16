@@ -64,23 +64,29 @@
 }
 
 body {
-  background-color: #f8f8f8fa;
+  background-color: white;
+  font-family: "Poppins", sans-serif;
 }
-
+.editor_heading {
+  margin: 30px 0px 15px 0px;
+}
 .editor_heading h2 {
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 1px;
-  font-size: 26px;
+  font-size: 20px;
   color: #283739;
-  margin-top: 20px;
-  margin-bottom: 40px;
+}
+.editor_heading p {
+  color: #757575;
+  text-align: center;
+  padding: 5px;
 }
 .editor_nav {
   width: 90%;
   margin: auto;
-  border-radius: 4px 4px 0px 0px;
-  background-color: #e6f0ff;
+  margin-bottom: 8px;
+  /* background-color: #e6f0ff; */
 }
 .editor_nav ul {
   display: flex;
@@ -88,6 +94,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 40px;
+  font-size: 14px;
 }
 
 .editor_nav ul li:hover {
@@ -99,60 +106,79 @@ body {
   height: 40px;
   display: grid;
   place-items: center;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0px 20px;
+  margin-right: 10px;
 }
 .nav {
   color: #006ef4;
   display: grid;
   padding: 0px 20px;
+  margin-right: 10px;
   letter-spacing: 1px;
+  height: 40px;
+
+  place-items: center;
+
+  border-radius: 4px;
+  background-color: #dce9ff;
 }
 .nav:hover {
   background-color: #c6dbfe;
   transition: 0.2s all linear;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  padding: 0px 20px;
-  border-radius: 4px;
 }
-
+.parent_container {
+  height: 470px;
+  padding-bottom: 20px;
+}
 .preview {
   width: 90%;
   margin: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 1px solid #b1b1b1;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .preview img {
   overflow: scroll;
 }
+
 .sun-editor-editable {
-  border: 1px solid #dadada;
-  height: 100%;
-  border-radius: 0px 0px 4px 4px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 14px;
+  flex: 1;
+  overflow: auto;
 }
 .sun-editor-editable img {
   overflow: scroll;
-}
-.sun-editor {
-  border-radius: 0px 0px 4px 4px;
-}
-.sun-editor .se-resizing-bar {
-  border-radius: 0px 0px 4px 4px;
-}
-
-.sun-editor .se-wrapper .se-wrapper-inner {
-  min-height: 420px;
 }
 
 .ͼ1 {
   height: 100%;
 }
+.ͼ16 {
+  background-color: white;
+}
 .ͼ1 .cm-scroller {
   padding: 14px;
+}
+.sun-editor .se-toolbar {
+  outline: none !important;
+  border-bottom: 1px solid #b1b1b1;
+}
+.sun-editor {
+  border: none;
+  position: none;
+}
+.se-container {
+  height: 100%;
+}
+.sun-editor .se-wrapper .se-wrapper-inner {
+  min-height: 408px;
 }
 .sun-editor .se-toolbar {
   position: sticky;

@@ -3,13 +3,15 @@ import CodeMirror from "@uiw/react-codemirror";
 import { html as beautifyHtml } from "js-beautify";
 import { htmlCode } from "./HtmlEditor";
 import { html } from "@codemirror/lang-html";
-import { githubLight } from "@uiw/codemirror-theme-github";
+
+import { noctisLilac } from "@uiw/codemirror-theme-noctis-lilac";
+
 import { EditorView } from "@codemirror/view";
 import "./navbar.css";
-function HtmlContent({ onChange, value, onClick }) {
-  const { Html } = useContext(htmlCode);
+function HtmlContent() {
+  const { Html, Content, onHtmlChange } = useContext(htmlCode);
 
-  const formattedContent = beautifyHtml(value, {
+  const formattedContent = beautifyHtml(Content, {
     indent_size: 2,
     preserve_newlines: true,
     end_with_newline: true,
@@ -19,13 +21,13 @@ function HtmlContent({ onChange, value, onClick }) {
     <Fragment>
       {Html && (
         <div
-          onClick={onClick}
           style={{
             width: "90%",
             margin: "auto",
+            minHeight: "400px",
             height: "100%",
-            border: "1px solid #dadada",
-            borderRadius: "0px 0px 4px 4px",
+            border: "1px solid #B1B1B1",
+            borderRadius: "4px",
             overflow: "auto",
             display: "flex",
             flexDirection: "column",
@@ -34,9 +36,9 @@ function HtmlContent({ onChange, value, onClick }) {
           <CodeMirror
             value={formattedContent}
             extensions={[html(), EditorView.lineWrapping]}
-            theme={githubLight}
+            theme={noctisLilac}
             onChange={(htmlVal) => {
-              onChange(htmlVal);
+              onHtmlChange(htmlVal);
             }}
             basicSetup={{
               lineNumbers: true,
