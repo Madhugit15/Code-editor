@@ -97,6 +97,10 @@ const Editor = () => {
                   ["removeFormat", "horizontalRule", "align", "list"],
                   ["subscript", "superscript", "blockquote"],
                 ],
+                fontSize: [
+                  8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28,
+                  36, 48, 72,
+                ],
                 font: [
                   "Roboto",
                   "Open Sans",
