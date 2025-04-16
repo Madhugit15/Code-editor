@@ -161,7 +161,7 @@ body {
   height: 100%;
 }
 .ͼ16 {
-  background-color: white;
+  background-color: white !important;
 }
 .ͼ1 .cm-scroller {
   padding: 14px;
