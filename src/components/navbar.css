@@ -127,7 +127,8 @@ body {
 }
 .parent_container {
   height: 470px;
-  padding-bottom: 20px;
+  
+  position: relative;
 }
 .preview {
   width: 90%;

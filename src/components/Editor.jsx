@@ -65,12 +65,18 @@ const Editor = () => {
             margin: "auto",
             height: "100%",
             border: "1px solid #b1b1b1",
+            borderBottom: "none",
             overflow: "auto",
-            borderRadius: "4px",
+            borderRadius: "4px 4px 0px 0px",
           }}
         >
           <div
-            style={{ overflow: "auto", overflowX: "hidden", height: "100%" }}
+            style={{
+              overflow: "auto",
+              overflowX: "hidden",
+              height: "100%",
+              
+            }}
           >
             <SunEditor
               getSunEditorInstance={getSunEditorInstance}
@@ -122,6 +128,7 @@ const Editor = () => {
                   "Quicksand",
                   "Karla",
                 ],
+                height: "100%",
 
                 resizeEnable: true,
                 attributesBlacklist: {

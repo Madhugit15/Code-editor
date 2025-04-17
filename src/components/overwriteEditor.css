@@ -23,7 +23,6 @@
   padding: 14px;
 }
 
-/* HtmlCode Container */
 .ͼ1 {
   height: 100%;
 }
@@ -42,4 +41,16 @@
 
 .sun-editor-editable p {
   margin: 0px !important;
+}
+.parent_container {
+  transform: translateX(0);
+}
+.sun-editor .se-resizing-bar {
+  position: fixed;
+  top: 100%;
+  z-index: 10;
+  width: 90%;
+  margin: auto;
+  border: 1px solid #b1b1b1;
+  border-radius: 0px 0px 4px 4px;
 }
