@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { useContext } from "react";
 import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
-import "./navbar.css";
+
 import { htmlCode } from "./HtmlEditor";
 
 function Preview() {

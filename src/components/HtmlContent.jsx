@@ -7,7 +7,7 @@ import { html } from "@codemirror/lang-html";
 import { noctisLilac } from "@uiw/codemirror-theme-noctis-lilac";
 
 import { EditorView } from "@codemirror/view";
-import "./navbar.css";
+
 function HtmlContent() {
   const { Html, Content, onHtmlChange } = useContext(htmlCode);
 

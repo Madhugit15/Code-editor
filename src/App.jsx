@@ -2,7 +2,8 @@ import Editor from "./components/Editor";
 import Preview from "./components/Preview";
 import HtmlContent from "./components/HtmlContent";
 import HtmlEditor from "./components/HtmlEditor";
-
+import "./components/overwriteEditor.css";
+import "./components/navbar.css";
 function App() {
   function handleEditorClick() {
     console.log("Editor is clicked"); //sample code
@@ -18,7 +19,7 @@ function App() {
   }
   return (
     <>
-      <HtmlEditor showNav={true} >
+      <HtmlEditor showNav={true}>
         <Editor onChange={handleEditorChange} onClick={handleEditorClick} />
         <HtmlContent onChange={handleHtmlChange} onClick={handleHtmlClick} />
         <Preview />

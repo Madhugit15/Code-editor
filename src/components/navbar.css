@@ -117,9 +117,7 @@ body {
   margin-right: 10px;
   letter-spacing: 1px;
   height: 40px;
-
   place-items: center;
-
   border-radius: 4px;
   background-color: #dce9ff;
 }
@@ -145,46 +143,6 @@ body {
 .preview img {
   overflow: scroll;
 }
-
-.sun-editor-editable {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  padding: 14px;
-  flex: 1;
-  overflow: auto;
-}
-.sun-editor-editable img {
-  overflow: scroll;
-}
-
-.ͼ1 {
-  height: 100%;
-}
-.ͼ16 {
-  background-color: white !important;
-}
-.ͼ1 .cm-scroller {
-  padding: 14px;
-}
-.sun-editor .se-toolbar {
-  outline: none !important;
-  border-bottom: 1px solid #b1b1b1;
-}
-.sun-editor {
-  border: none;
-  position: none;
-}
-.se-container {
-  height: 100%;
-}
-.sun-editor .se-wrapper .se-wrapper-inner {
-  min-height: 408px;
-}
-.sun-editor .se-toolbar {
-  position: sticky;
-  top: 0;
-}
-
 @media screen and (max-width: 346px) {
   .nav {
     padding: 0px 10px;

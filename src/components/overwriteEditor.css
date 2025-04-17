@@ -1,0 +1,45 @@
+/* Editor toolbar  */
+.sun-editor .se-toolbar {
+  outline: none !important;
+  border-bottom: 1px solid #b1b1b1;
+  position: sticky;
+  top: 0;
+}
+
+/* Editor  container */
+.sun-editor-editable {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 14px;
+  flex: 1;
+  overflow: auto;
+  color: black;
+}
+/* Editor container image */
+.sun-editor-editable img {
+  overflow: scroll;
+}
+.ͼ1 .cm-scroller {
+  padding: 14px;
+}
+
+/* HtmlCode Container */
+.ͼ1 {
+  height: 100%;
+}
+
+.ͼ16 {
+  background-color: white !important;
+}
+
+.sun-editor {
+  border: none;
+}
+
+.sun-editor .se-wrapper .se-wrapper-inner {
+  min-height: 408px;
+}
+
+.sun-editor-editable p {
+  margin: 0px !important;
+}
