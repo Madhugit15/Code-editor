@@ -14,12 +14,12 @@
   font-weight: 400;
   padding: 14px;
   flex: 1;
-
+  overflow: scroll;
   color: black;
 }
 /* Editor container image */
 .sun-editor-editable img {
-  overflow: scroll;
+  overflow: auto;
 }
 .ͼ1 .cm-scroller {
   padding: 14px;
@@ -42,7 +42,7 @@
 }
 .sun-editor .se-wrapper-inner {
   min-height: 408px !important;
-  border-left:1px solid #b1b1b1 ;
+  border-left: 1px solid #b1b1b1;
   border-right: 1px solid #b1b1b1;
 }
 
@@ -62,13 +62,18 @@
   border: 1px solid #b1b1b1;
   border-radius: 0px 0px 4px 4px;
 }
+.sun-editor-editable[contenteditable="true"] figure img {
+  height: 100% !important;
+}
 @media screen and (max-width: 1078px) {
   .sun-editor .se-toolbar {
     height: 19%;
   }
   .sun-editor .se-wrapper {
     height: 81%;
-    overflow: auto;
+  }
+  .sun-editor .se-wrapper-inner {
+    min-height: 0px !important;
   }
 }
 @media screen and (max-width: 792px) {
@@ -77,16 +82,16 @@
   }
   .sun-editor .se-wrapper {
     height: 72%;
-    overflow: auto;
+    overflow: hidden !important;
   }
 }
+
 @media screen and (max-width: 586px) {
   .sun-editor .se-toolbar {
     height: 36%;
   }
   .sun-editor .se-wrapper {
     height: 64%;
-    overflow: auto;
   }
 }
 @media screen and (max-width: 306px) {
@@ -95,6 +100,5 @@
   }
   .sun-editor .se-wrapper {
     height: 58%;
-    overflow: auto;
   }
 }

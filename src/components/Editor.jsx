@@ -65,8 +65,7 @@ const Editor = () => {
             margin: "auto",
             height: "100%",
             borderBottom: "none",
-            transform:"translateX(0)"
-            
+            transform: "translateX(0)",
           }}
         >
           <div style={{ height: "100%" }}>
@@ -123,8 +122,7 @@ const Editor = () => {
                 ],
 
                 resizeEnable: true,
-                imageResizing:true,
-                imageWidth:"auto",
+
                 attributesBlacklist: {
                   //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
                   strong: "style",
