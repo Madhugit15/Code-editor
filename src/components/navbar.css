@@ -127,9 +127,7 @@ body {
 }
 .parent_container {
   height: 470px;
-  padding-bottom: 20px;
   
-  position: relative;
 }
 .preview {
   width: 90%;
@@ -142,9 +140,10 @@ body {
   border-radius: 4px;
   overflow: hidden;
 }
-.preview img {
-  overflow: scroll;
+.preview .sun-editor-editable {
+  overflow: auto;
 }
+
 @media screen and (max-width: 346px) {
   .nav {
     padding: 0px 10px;
