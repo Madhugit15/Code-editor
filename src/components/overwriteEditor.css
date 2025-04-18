@@ -53,6 +53,7 @@
   overflow-x: hidden;
   border-left: 1px solid #b1b1b1;
   border-right: 1px solid #b1b1b1;
+  overflow-y: auto;
 }
 
 .sun-editor-editable p {
