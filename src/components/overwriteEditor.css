@@ -38,7 +38,7 @@
   height: 100%;
 }
 
-.sun-editor .se-wrapper-inner {
+.sun-editor .se-wrapper .se-wrapper-inner {
   min-height: 408px !important;
   overflow-y: hidden !important;
   overflow-x: hidden !important;
