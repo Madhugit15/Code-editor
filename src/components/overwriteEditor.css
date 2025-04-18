@@ -1,9 +1,11 @@
 /* Editor toolbar  */
 .sun-editor .se-toolbar {
   outline: none !important;
-  border-bottom: 1px solid #b1b1b1;
+  border: 1px solid #b1b1b1;
   position: sticky;
   top: 0;
+  height: 10%;
+  border-radius:4px 4px 0px 0px;
 }
 
 /* Editor  container */
@@ -12,7 +14,7 @@
   font-weight: 400;
   padding: 14px;
   flex: 1;
-  overflow: auto;
+
   color: black;
 }
 /* Editor container image */
@@ -33,24 +35,68 @@
 
 .sun-editor {
   border: none;
+  height: 100%;
 }
 
-.sun-editor .se-wrapper .se-wrapper-inner {
+.sun-editor .se-wrapper-inner {
   min-height: 408px;
+  height: 100%;
+}
+.sun-editor .se-container {
+  height: 100%;
+  
+}
+.sun-editor .se-wrapper {
+  overflow: auto;
+  height: 90%;
+  overflow-x: hidden;
+  border-left:1px solid #b1b1b1 ;
+  border-right:1px solid #b1b1b1 ;
+
 }
 
 .sun-editor-editable p {
   margin: 0px !important;
 }
-.parent_container {
-  transform: translateX(0);
-}
+
 .sun-editor .se-resizing-bar {
   position: fixed;
   top: 100%;
   z-index: 10;
-  width: 90%;
+  width: 100%;
   margin: auto;
   border: 1px solid #b1b1b1;
   border-radius: 0px 0px 4px 4px;
+}
+@media screen and (max-width: 1078px) {
+  .sun-editor .se-toolbar {
+    height: 19%;
+  }
+  .sun-editor .se-wrapper {
+    height: 81%;
+  }
+}
+@media screen and (max-width: 792px) {
+  .sun-editor .se-toolbar {
+    height: 28%;
+  }
+  .sun-editor .se-wrapper {
+    height: 72%;
+  }
+}
+@media screen and (max-width: 586px) {
+  .sun-editor .se-toolbar {
+    height: 36%;
+  }
+  .sun-editor .se-wrapper {
+    height: 64%;
+  }
+}
+@media screen and (max-width: 306px) {
+  .sun-editor .se-toolbar {
+    height: 43%;
+  }
+  .sun-editor .se-wrapper {
+    height: 58%;
+  }
 }

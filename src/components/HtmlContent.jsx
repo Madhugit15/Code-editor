@@ -24,11 +24,11 @@ function HtmlContent() {
           style={{
             width: "90%",
             margin: "auto",
-            minHeight: "400px",
+
             height: "100%",
-            border: "1px solid #B1B1B1",
-            borderRadius: "4px",
-            overflow: "auto",
+            // border: "1px solid #B1B1B1",
+            // borderRadius: "4px",
+            // overflow: "auto",
             display: "flex",
             flexDirection: "column",
           }}
@@ -45,7 +45,13 @@ function HtmlContent() {
               highlightActiveLine: true,
               autocompletion: true,
             }}
-            style={{ flex: 1, fontFamily: "Poppins, sans-serif" }}
+            style={{
+              flex: 1,
+              fontFamily: "Poppins, sans-serif",
+              border: "1px solid #b1b1b1 ",
+              overflow: "auto",
+              borderRadius: "4px",
+            }}
           />
         </div>
       )}
