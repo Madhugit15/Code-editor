@@ -44,6 +44,7 @@
   min-height: 408px !important;
   border-left: 1px solid #b1b1b1;
   border-right: 1px solid #b1b1b1;
+  overflow-x: hidden !important;
 }
 
 .sun-editor-editable p {
@@ -52,6 +53,7 @@
 .sun-editor .se-wrapper {
   height: 90%;
   overflow: hidden !important;
+  
 }
 .sun-editor .se-resizing-bar {
   position: fixed;

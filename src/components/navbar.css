@@ -127,7 +127,6 @@ body {
 }
 .parent_container {
   height: 470px;
-  
 }
 .preview {
   width: 90%;
@@ -142,6 +141,7 @@ body {
 }
 .preview .sun-editor-editable {
   overflow: auto;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 346px) {
