@@ -1,9 +1,7 @@
-import Editor from "./components/Editor";
-import Preview from "./components/Preview";
-import HtmlContent from "./components/HtmlContent";
-import HtmlEditor from "./components/HtmlEditor";
-import "./components/overwriteEditor.css";
-import "./components/navbar.css";
+import Editor from "./editor";
+import "./editor/editor.override.css";
+import "./editor/header/header.css";
+
 function App() {
   function handleEditorClick() {
     console.log("Editor is clicked"); //sample code
@@ -19,11 +17,21 @@ function App() {
   }
   return (
     <>
-      <HtmlEditor showNav={true}>
-        <Editor onChange={handleEditorChange} onClick={handleEditorClick} />
-        <HtmlContent onChange={handleHtmlChange} onClick={handleHtmlClick} />
-        <Preview />
-      </HtmlEditor>
+      <div className="editor_heading">
+        <h2>HTML Shifter</h2>
+        <p>Transform Word into HTML code</p>
+      </div>
+
+      {/* Editor component  */}
+
+      <Editor showHeader={true}>
+        <Editor.word
+          onChange={handleEditorChange}
+          onClick={handleEditorClick}
+        />
+        <Editor.html onChange={handleHtmlChange} onClick={handleHtmlClick} />
+        <Editor.preview />
+      </Editor>
     </>
   );
 }

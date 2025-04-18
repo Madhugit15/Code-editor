@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import "./navbar.css";
-import { htmlCode } from "./HtmlEditor";
-// import { NavLink } from "react-router-dom";
-function Navbar() {
+
+import { htmlCode } from "..";
+
+import "./header.css";
+
+function Header() {
   const { Editor, Html, Preview, setEditor, setHtml, setPreview } =
     useContext(htmlCode);
   function showEditor() {
@@ -39,4 +41,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;

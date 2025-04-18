@@ -1,14 +1,14 @@
 import React, { Fragment, useContext } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { html as beautifyHtml } from "js-beautify";
-import { htmlCode } from "./HtmlEditor";
+import { htmlCode } from ".";
 import { html } from "@codemirror/lang-html";
 
 import { noctisLilac } from "@uiw/codemirror-theme-noctis-lilac";
 
 import { EditorView } from "@codemirror/view";
 
-function HtmlContent() {
+export const HtmlEditor = () => {
   const { Html, Content, onHtmlChange } = useContext(htmlCode);
 
   const formattedContent = beautifyHtml(Content, {
@@ -57,6 +57,4 @@ function HtmlContent() {
       )}
     </Fragment>
   );
-}
-
-export default HtmlContent;
+};

@@ -3,9 +3,9 @@ import { useContext } from "react";
 import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
 
-import { htmlCode } from "./HtmlEditor";
+import { htmlCode } from ".";
 
-function Preview() {
+export const Preview = () => {
   const { Preview, Content } = useContext(htmlCode);
   return (
     <Fragment>
@@ -18,6 +18,4 @@ function Preview() {
       )}
     </Fragment>
   );
-}
-
-export default Preview;
+};

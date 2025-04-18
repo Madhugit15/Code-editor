@@ -1,13 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import Navbar from "./Navbar";
-import "./navbar.css"
+
+import Header from "./header";
+import "./header/header.css";
+import { Preview } from "./preview";
+import { HtmlEditor } from "./html.editor";
+import { WordEditor } from "./word.editor";
 
 //Context api for global state management
 export const htmlCode = createContext();
 
-function HtmlEditor({ children, showNav }) {
+const Editor = ({ children, showHeader }) => {
   const [Editor, setEditor] = useState(true);
   const [Html, setHtml] = useState(false);
   const [Preview, setPreview] = useState(false);
@@ -28,10 +32,6 @@ function HtmlEditor({ children, showNav }) {
   }
   return (
     <>
-      <div className="editor_heading">
-        <h2>HTML Shifter</h2>
-        <p>Transform Word into HTML code</p>
-      </div>
       <htmlCode.Provider
         value={{
           Content,
@@ -46,15 +46,15 @@ function HtmlEditor({ children, showNav }) {
           onHtmlChange,
         }}
       >
-        {showNav && <Navbar />}
-        <div
-          className="parent_container"
-        >
-          {children}
-        </div>
+        {showHeader && <Header />}
+        <div className="parent_container">{children}</div>
       </htmlCode.Provider>
     </>
   );
-}
+};
 
-export default HtmlEditor;
+Editor.word = WordEditor;
+Editor.html = HtmlEditor;
+Editor.preview = Preview;
+
+export default Editor;

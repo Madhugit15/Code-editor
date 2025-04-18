@@ -2,9 +2,9 @@ import React, { useContext, useRef } from "react";
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
-import { htmlCode } from "./HtmlEditor";
+import { htmlCode } from ".";
 
-const Editor = () => {
+export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
 
@@ -156,5 +156,3 @@ const Editor = () => {
     </>
   );
 };
-
-export default Editor;
