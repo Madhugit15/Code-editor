@@ -40,7 +40,8 @@
 
 .sun-editor .se-wrapper-inner {
   min-height: 408px !important;
-
+  overflow-y: none !important;
+  overflow-x: none !important;
   height: 100%;
 }
 .sun-editor .se-container {
