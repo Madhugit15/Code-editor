@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 import Header from "./header";
-import "./header/header.css";
-import { Preview } from "./preview";
-import { HtmlEditor } from "./html.editor";
-import { WordEditor } from "./word.editor";
+import { UIPreview } from "./ui-preview";
+import { HtmlEditor } from "./html-editor";
+import { WordEditor } from "./word-editor";
+
+import styles from "./editor.module.css";
 
 //Context api for global state management
 export const htmlCode = createContext();
@@ -30,6 +31,7 @@ const Editor = ({ children, showHeader }) => {
   function onHtmlChange(value) {
     setContent(value);
   }
+
   return (
     <>
       <htmlCode.Provider
@@ -47,7 +49,19 @@ const Editor = ({ children, showHeader }) => {
         }}
       >
         {showHeader && <Header />}
-        <div className="parent_container">{children}</div>
+        <div className={styles.EditorColumns}>
+          {React.Children.map(children, (child) => {
+            if (
+              React.isValidElement(child) &&
+              (child.type === WordEditor ||
+                child.type === HtmlEditor ||
+                child.type === UIPreview)
+            ) {
+              return React.cloneElement(child, { Content, setContent });
+            }
+            return null;
+          })}
+        </div>
       </htmlCode.Provider>
     </>
   );
@@ -55,6 +69,6 @@ const Editor = ({ children, showHeader }) => {
 
 Editor.word = WordEditor;
 Editor.html = HtmlEditor;
-Editor.preview = Preview;
+Editor.preview = UIPreview;
 
 export default Editor;

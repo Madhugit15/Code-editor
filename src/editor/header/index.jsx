@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 
-import { htmlCode } from "..";
-
-import "./header.css";
+import { htmlCode } from "../index.jsx";
+import styles from "./header.module.css";
 
 function Header() {
   const { Editor, Html, Preview, setEditor, setHtml, setPreview } =
@@ -23,21 +22,17 @@ function Header() {
     setPreview(true);
   }
   return (
-    <div className="editor_top_content">
-      <div className="editor_nav">
-        <ul>
-          <li onClick={showEditor} className={Editor ? "active" : "nav"}>
-            WORD
-          </li>
-          <li onClick={showHtml} className={Html ? "active" : "nav"}>
-            HTML
-          </li>
-          <li onClick={showPreview} className={Preview ? "active" : "nav"}>
-            PREVIEW
-          </li>
-        </ul>
-      </div>
-    </div>
+    <ul className={styles.headerContainer}>
+      <li onClick={showEditor} className={Editor && styles.active}>
+        WORD
+      </li>
+      <li onClick={showHtml} className={Html && styles.active}>
+        HTML
+      </li>
+      <li onClick={showPreview} className={Preview && styles.active}>
+        PREVIEW
+      </li>
+    </ul>
   );
 }
 

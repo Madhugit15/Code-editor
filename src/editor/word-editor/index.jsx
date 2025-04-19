@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
-import { htmlCode } from ".";
+import { htmlCode } from "..";
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
@@ -61,8 +61,7 @@ export const WordEditor = () => {
       {Editor && (
         <div
           style={{
-            width: "90%",
-            margin: "auto",
+            width: "100%",
             height: "100%",
             borderBottom: "none",
             transform: "translateX(0)",

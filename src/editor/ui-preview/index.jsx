@@ -1,17 +1,21 @@
 import React, { Fragment } from "react";
 import { useContext } from "react";
+
+import { htmlCode } from "..";
+
 import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
+import "../editor.override.css";
 
-import { htmlCode } from ".";
+import styles from "./preview.module.css"
 
-export const Preview = () => {
+export const UIPreview = () => {
   const { Preview, Content } = useContext(htmlCode);
   return (
     <Fragment>
       {Preview && (
-        <div className="preview">
-          <div className="sun-editor-editable ">
+        <div className={styles.previewContainer}>
+          <div className="sun-editor-editable">
             <div dangerouslySetInnerHTML={{ __html: Content }} />
           </div>
         </div>
