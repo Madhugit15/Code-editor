@@ -4,7 +4,7 @@
   border: 1px solid #d4d4d4;
   position: sticky;
   top: 0;
-
+height: 10%;
   border-radius: 4px 4px 0px 0px;
 }
 
@@ -42,12 +42,9 @@
   height: 100%;
 }
 .sun-editor .se-wrapper-inner {
-  min-height: 408px !important;
-  border-left: 1px solid #b1b1b1;
-  border-right: 1px solid #b1b1b1;
   overflow-x: hidden !important;
-  overflow-y:scroll ;}
-  
+}
+
 .sun-editor .se-wrapper {
   overflow: auto;
   height: 90%;
@@ -63,7 +60,6 @@
 .sun-editor .se-wrapper {
   height: 90%;
   overflow: hidden !important;
-  
 }
 .sun-editor .se-resizing-bar {
   position: fixed;
@@ -84,15 +80,15 @@
   margin-top: 5px;
 }
 
+.sun-editor .se-controller-resizing{
+  z-index: 10;
+}
 @media screen and (max-width: 1078px) {
   .sun-editor .se-toolbar {
     height: 19%;
   }
   .sun-editor .se-wrapper {
     height: 81%;
-  }
-  .sun-editor .se-wrapper-inner {
-    min-height: 0px !important;
   }
 }
 @media screen and (max-width: 792px) {

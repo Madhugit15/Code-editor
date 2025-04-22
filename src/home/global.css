@@ -143,7 +143,9 @@ body {
   overflow: auto;
   overflow-x: hidden;
 }
-
+ .sun-editor-editable  img {
+  height: 100% !important;
+}
 @media screen and (max-width: 346px) {
   .nav {
     padding: 0px 10px;

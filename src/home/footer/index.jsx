@@ -5,7 +5,7 @@ import styles from "./footer.module.css";
 const CONTRIBUTERS = [
   {
     image: "https://avatars.githubusercontent.com/u/187260081?v=4",
-    name: "Madhu Shree",
+    name: "Madhushree",
     githubUrl: "https://github.com/Madhugit15",
   },
   {
