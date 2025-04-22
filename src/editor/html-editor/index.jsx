@@ -1,14 +1,14 @@
 import React, { Fragment, useContext } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { html as beautifyHtml } from "js-beautify";
-import { htmlCode } from "./HtmlEditor";
+import { htmlCode } from "..";
 import { html } from "@codemirror/lang-html";
 
 import { noctisLilac } from "@uiw/codemirror-theme-noctis-lilac";
 
 import { EditorView } from "@codemirror/view";
 
-function HtmlContent() {
+export const HtmlEditor = () => {
   const { Html, Content, onHtmlChange } = useContext(htmlCode);
 
   const formattedContent = beautifyHtml(Content, {
@@ -22,13 +22,8 @@ function HtmlContent() {
       {Html && (
         <div
           style={{
-            width: "90%",
-            margin: "auto",
-
+            width: "100%",
             height: "100%",
-            // border: "1px solid #B1B1B1",
-            // borderRadius: "4px",
-            // overflow: "auto",
             display: "flex",
             flexDirection: "column",
           }}
@@ -48,7 +43,7 @@ function HtmlContent() {
             style={{
               flex: 1,
               fontFamily: "Poppins, sans-serif",
-              border: "1px solid #b1b1b1 ",
+              border: "1px solid #d4d4d4 ",
               overflow: "auto",
               borderRadius: "4px",
             }}
@@ -57,6 +52,4 @@ function HtmlContent() {
       )}
     </Fragment>
   );
-}
-
-export default HtmlContent;
+};

@@ -1,13 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import Navbar from "./Navbar";
-import "./navbar.css"
+
+import Header from "./header";
+import { UIPreview } from "./ui-preview";
+import { HtmlEditor } from "./html-editor";
+import { WordEditor } from "./word-editor";
+
+import styles from "./editor.module.css";
 
 //Context api for global state management
 export const htmlCode = createContext();
 
-function HtmlEditor({ children, showNav }) {
+const Editor = ({ children, showHeader }) => {
   const [Editor, setEditor] = useState(true);
   const [Html, setHtml] = useState(false);
   const [Preview, setPreview] = useState(false);
@@ -26,12 +31,9 @@ function HtmlEditor({ children, showNav }) {
   function onHtmlChange(value) {
     setContent(value);
   }
+
   return (
     <>
-      <div className="editor_heading">
-        <h2>HTML Shifter</h2>
-        <p>Transform Word into HTML code</p>
-      </div>
       <htmlCode.Provider
         value={{
           Content,
@@ -46,15 +48,27 @@ function HtmlEditor({ children, showNav }) {
           onHtmlChange,
         }}
       >
-        {showNav && <Navbar />}
-        <div
-          className="parent_container"
-        >
-          {children}
+        {showHeader && <Header />}
+        <div className={styles.EditorColumns}>
+          {React.Children.map(children, (child) => {
+            if (
+              React.isValidElement(child) &&
+              (child.type === WordEditor ||
+                child.type === HtmlEditor ||
+                child.type === UIPreview)
+            ) {
+              return React.cloneElement(child, { Content, setContent });
+            }
+            return null;
+          })}
         </div>
       </htmlCode.Provider>
     </>
   );
-}
+};
 
-export default HtmlEditor;
+Editor.word = WordEditor;
+Editor.html = HtmlEditor;
+Editor.preview = UIPreview;
+
+export default Editor;
