@@ -1,8 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
+import Pickr from "@simonwep/pickr";
+import "@simonwep/pickr/dist/themes/classic.min.css";
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
@@ -10,9 +12,62 @@ export const WordEditor = () => {
 
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
-  };
 
-  //CUSTOM FONTWEIGHT//
+    //---CUSTOM BORDER RADIUS
+    const addBorderRadiusInput = () => {
+      let selectedImg = null;
+      const dialogBox = sunEditor.core.context.image.modal;
+
+      const imgParentDialog = dialogBox.querySelector("._se_tab_content_image");
+
+      const imageDialogBody = imgParentDialog.querySelector(".se-dialog-body");
+
+      // Create label and input
+      const label = sunEditor.util.createElement("label");
+      label.innerText = "Border-Radius";
+      label.style.marginRight = "8px";
+
+      const input = sunEditor.util.createElement("input");
+      input.className = "se-input-form border-radius-input";
+      input.type = "text";
+      input.value = "0px";
+      input.style.width = "100%";
+
+      // Create container div and append label and input
+      const newDiv = sunEditor.util.createElement("div");
+      newDiv.className = "se-dialog-form";
+      newDiv.style.marginTop = "10px";
+      newDiv.appendChild(label);
+      newDiv.appendChild(input);
+
+      // Append the new div to the dialog body
+      imageDialogBody.appendChild(newDiv);
+
+      document.addEventListener("click", (event) => {
+        if (event.target.tagName === "FIGURE") {
+          const img = event.target.querySelector("img");
+          selectedImg = img;
+          input.value = selectedImg.style.borderRadius;
+        }
+      });
+
+      // Modify the insert function to include border radius
+      const insertButton = dialogBox.querySelector(".se-btn-primary");
+      if (insertButton) {
+        insertButton.addEventListener("click", () => {
+          const borderRadius = input.value;
+
+          if (selectedImg && selectedImg.tagName === "IMG" && borderRadius) {
+            selectedImg.style.borderRadius = borderRadius;
+          }
+        });
+      }
+    };
+    const imageButton = document.querySelector(".se-dialog-image");
+    if (imageButton) {
+      setTimeout(addBorderRadiusInput, 10); // Delay to ensure dialog is rendered
+    }
+  }; //---
 
   const fontWeightPlugin = {
     name: "fontWeight",
@@ -88,6 +143,7 @@ export const WordEditor = () => {
                     "lineHeight",
                     "link",
                     "image",
+
                     "video",
                   ],
                   ["removeFormat", "horizontalRule", "align", "list"],

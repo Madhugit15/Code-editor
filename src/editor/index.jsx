@@ -16,6 +16,7 @@ const Editor = ({ children, showHeader }) => {
   const [Editor, setEditor] = useState(true);
   const [Html, setHtml] = useState(false);
   const [Preview, setPreview] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
   const [Content, setContent] = useState(() => {
     return localStorage.getItem("items") || ""; //get the content stored in local storage
   });
@@ -46,6 +47,8 @@ const Editor = ({ children, showHeader }) => {
           setPreview,
           onEditorChange,
           onHtmlChange,
+          selectedImg,
+          setSelectedImg,
         }}
       >
         {showHeader && <Header />}
