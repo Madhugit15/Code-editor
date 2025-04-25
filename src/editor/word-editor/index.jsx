@@ -4,37 +4,70 @@ import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
 import Pickr from "@simonwep/pickr";
-import "@simonwep/pickr/dist/themes/classic.min.css";
+import '@simonwep/pickr/dist/themes/classic.min.css';
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
+  // const [color, setColor] = useState();
 
-  const getSunEditorInstance = (sunEditor) => {
-    editorRef.current = sunEditor;
+  // const input = document.querySelector("._se_color_picker_input ");
 
-    //---CUSTOM BORDER RADIUS
+  // if (input) {
+  //   console.log(input);
+  //   input.addEventListener("change", (e) => {
+  //     const newColor = e.target.value;
+  //     setColor(newColor);
+  //     localStorage.setItem("editorFontColor", newColor);
+  //     input.value = color;
+  //     console.log(input.value);
+  //   });
+  // }
+  // useEffect(() => {
+  //   const savedColor = localStorage.getItem("editorFontColor");
+  //   if (savedColor) {
+  //     setColor(savedColor);
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   if (editorRef.current) {
+  //     editorRef.current.core.focus();
+
+  //     const editorEl = editorRef.current.core.context.element.wysiwyg;
+  //     const range = document.createRange();
+  //     const selection = window.getSelection();
+
+  //     // Move cursor to the end
+  //     if (editorEl.lastChild) {
+  //       range.selectNodeContents(editorEl.lastChild);
+  //       range.collapse(false);
+  //       selection.removeAllRanges();
+  //       selection.addRange(range);
+  //     }
+  //   }
+  // }, []);
+  useEffect(()=>{
     const addBorderRadiusInput = () => {
       let selectedImg = null;
-      const dialogBox = sunEditor.core.context.image.modal;
+      const dialogBox = editorRef.current.core.context.image.modal;
 
       const imgParentDialog = dialogBox.querySelector("._se_tab_content_image");
 
       const imageDialogBody = imgParentDialog.querySelector(".se-dialog-body");
 
       // Create label and input
-      const label = sunEditor.util.createElement("label");
+      const label = editorRef.current.util.createElement("label");
       label.innerText = "Border-Radius";
       label.style.marginRight = "8px";
 
-      const input = sunEditor.util.createElement("input");
+      const input = editorRef.current.util.createElement("input");
       input.className = "se-input-form border-radius-input";
       input.type = "text";
       input.value = "0px";
       input.style.width = "100%";
 
       // Create container div and append label and input
-      const newDiv = sunEditor.util.createElement("div");
+      const newDiv = editorRef.current.util.createElement("div");
       newDiv.className = "se-dialog-form";
       newDiv.style.marginTop = "10px";
       newDiv.appendChild(label);
@@ -67,6 +100,12 @@ export const WordEditor = () => {
     if (imageButton) {
       setTimeout(addBorderRadiusInput, 10); // Delay to ensure dialog is rendered
     }
+  },[])
+  const getSunEditorInstance = (sunEditor) => {
+    editorRef.current = sunEditor;
+
+    //---CUSTOM BORDER RADIUS
+    
   }; //---
 
   const fontWeightPlugin = {
@@ -108,8 +147,57 @@ export const WordEditor = () => {
       return listDiv;
     },
   };
+  const customColorPicker = {
+    name: 'customColorPicker',
+    display: 'command',
+    title: 'Color Picker',
+    buttonClass: '',
+    innerHTML: '<svg>...</svg>', // Replace with your icon SVG
+    add: function (core, targetElement) {
+      const pickerContainer = document.createElement('div');
+      pickerContainer.id = 'pickr-container';
+      document.body.appendChild(pickerContainer);
+  
+      const pickr = Pickr.create({
+        el: '#pickr-container',
+        theme: 'classic',
+        default: '#000000',
+        components: {
+          preview: true,
+          opacity: true,
+          hue: true,
+          interaction: {
+            hex: true,
+            rgba: true,
+            input: true,
+            clear: true,
+            save: true
+          }
+        }
+      });
+  
+      pickr.on('save', (color) => {
+        const selectedColor = color.toHEXA().toString();
+        core.execCommand('foreColor', selectedColor);
+        pickr.hide();
+      });
+  
+      this.pickrInstance = pickr;
+    },
+    action: function () {
+      if (this.pickrInstance) {
+        this.pickrInstance.show();
+      }
+    }
+  };
+  
+  
 
-  const allPlugins = [...Object.values(plugins), fontWeightPlugin];
+  const allPlugins = [
+    ...Object.values(plugins),
+    fontWeightPlugin,
+    customColorPicker,
+  ];
 
   return (
     <>
@@ -143,7 +231,7 @@ export const WordEditor = () => {
                     "lineHeight",
                     "link",
                     "image",
-
+                    "customColorPicker",
                     "video",
                   ],
                   ["removeFormat", "horizontalRule", "align", "list"],
