@@ -3,52 +3,29 @@ import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
-import { ChromePicker } from "react-color";
-import Pickr from "@simonwep/pickr";
-import "@simonwep/pickr/dist/themes/classic.min.css";
+
+
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
+const [Input,setinput]=useState("#90h456")
+  const input=(document.querySelector('._se_color_picker_input'))
+  const button= document.querySelector(".se-btn se-tooltip");
+  if(button){
+    console.log(button)
+  }
+  if(input){
+    input.classList.add("font-color")
+    input.classname+="font-color";
+    input.value=Input
+    console.log(input.value)
 
-  console.log();
-  // const [color, setColor] = useState();
-
-  // const input = document.querySelector("._se_color_picker_input ");
-
-  // if (input) {
-  //   console.log(input);
-  //   input.addEventListener("change", (e) => {
-  //     const newColor = e.target.value;
-  //     setColor(newColor);
-  //     localStorage.setItem("editorFontColor", newColor);
-  //     input.value = color;
-  //     console.log(input.value);
-  //   });
-  // }
-  // useEffect(() => {
-  //   const savedColor = localStorage.getItem("editorFontColor");
-  //   if (savedColor) {
-  //     setColor(savedColor);
-  //   }
-  // }, []);
-  // useEffect(() => {
-  //   if (editorRef.current) {
-  //     editorRef.current.core.focus();
-
-  //     const editorEl = editorRef.current.core.context.element.wysiwyg;
-  //     const range = document.createRange();
-  //     const selection = window.getSelection();
-
-  //     // Move cursor to the end
-  //     if (editorEl.lastChild) {
-  //       range.selectNodeContents(editorEl.lastChild);
-  //       range.collapse(false);
-  //       selection.removeAllRanges();
-  //       selection.addRange(range);
-  //     }
-  //   }
-  // }, []);
+    input.addEventListener("change",(e)=>{
+setinput(e.target.value)
+    })
+    
+  }
   useEffect(() => {
     const addBorderRadiusInput = () => {
       const dialogBox = editorRef.current?.core?.context?.image?.modal;
@@ -200,6 +177,7 @@ export const WordEditor = () => {
               getSunEditorInstance={getSunEditorInstance}
               defaultValue={Content}
               height="100%"
+              setDefaultStyle={`color:${Input}`}
               setOptions={{
                 plugins: allPlugins,
                 buttonList: [
