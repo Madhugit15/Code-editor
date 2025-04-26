@@ -3,12 +3,15 @@ import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
+import { ChromePicker } from "react-color";
 import Pickr from "@simonwep/pickr";
-import '@simonwep/pickr/dist/themes/classic.min.css';
+import "@simonwep/pickr/dist/themes/classic.min.css";
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
+
+  console.log();
   // const [color, setColor] = useState();
 
   // const input = document.querySelector("._se_color_picker_input ");
@@ -46,66 +49,97 @@ export const WordEditor = () => {
   //     }
   //   }
   // }, []);
-  useEffect(()=>{
+  useEffect(() => {
     const addBorderRadiusInput = () => {
-      let selectedImg = null;
-      const dialogBox = editorRef.current.core.context.image.modal;
+      const dialogBox = editorRef.current?.core?.context?.image?.modal;
+      console.log(dialogBox);
+      if (!dialogBox) return;
 
-      const imgParentDialog = dialogBox.querySelector("._se_tab_content_image");
+      const imageDialogBody = dialogBox.querySelector(".se-dialog-body");
 
-      const imageDialogBody = imgParentDialog.querySelector(".se-dialog-body");
+      // Prevent duplicates
+      if (imageDialogBody.querySelector(".border-radius-input")) return;
 
-      // Create label and input
-      const label = editorRef.current.util.createElement("label");
-      label.innerText = "Border-Radius";
+      // Label
+      const label = document.createElement("label");
+      label.innerText = "Border Radius";
       label.style.marginRight = "8px";
 
-      const input = editorRef.current.util.createElement("input");
+      // Input
+      const input = document.createElement("input");
       input.className = "se-input-form border-radius-input";
       input.type = "text";
-      input.value = "0px";
       input.style.width = "100%";
 
-      // Create container div and append label and input
-      const newDiv = editorRef.current.util.createElement("div");
-      newDiv.className = "se-dialog-form";
-      newDiv.style.marginTop = "10px";
-      newDiv.appendChild(label);
-      newDiv.appendChild(input);
+      // Get saved value or fallback
+      const savedRadius = localStorage.getItem("lastUsedBorderRadius") || "0px";
+      input.value = savedRadius;
+      console.log(savedRadius);
 
-      // Append the new div to the dialog body
-      imageDialogBody.appendChild(newDiv);
+      // Combine into div
+      const div = document.createElement("div");
+      div.className = "se-dialog-form";
+      div.style.marginTop = "10px";
+      div.appendChild(label);
+      div.appendChild(input);
 
-      document.addEventListener("click", (event) => {
-        if (event.target.tagName === "FIGURE") {
-          const img = event.target.querySelector("img");
-          selectedImg = img;
-          input.value = selectedImg.style.borderRadius;
-        }
-      });
+      imageDialogBody.appendChild(div);
 
-      // Modify the insert function to include border radius
+      // Apply on insert
       const insertButton = dialogBox.querySelector(".se-btn-primary");
-      if (insertButton) {
-        insertButton.addEventListener("click", () => {
-          const borderRadius = input.value;
-
-          if (selectedImg && selectedImg.tagName === "IMG" && borderRadius) {
-            selectedImg.style.borderRadius = borderRadius;
+      insertButton?.addEventListener("click", () => {
+        const borderRadius = input.value;
+        localStorage.setItem("lastUsedBorderRadius", borderRadius);
+        console.log(borderRadius);
+        setTimeout(() => {
+          const images =
+            editorRef.current?.core.context.element.wysiwyg.querySelectorAll(
+              "img"
+            );
+          const latestImage = images?.[images.length - 1];
+          if (latestImage) {
+            latestImage.style.borderRadius = borderRadius;
+            latestImage.style.transition = "border-radius 0.3s";
+            editorRef.current?.core.context.element.wysiwyg.dispatchEvent(
+              new Event("input")
+            );
           }
-        });
-      }
+        }, 0);
+      });
     };
-    const imageButton = document.querySelector(".se-dialog-image");
-    if (imageButton) {
-      setTimeout(addBorderRadiusInput, 10); // Delay to ensure dialog is rendered
+
+    // Wait for image dialog to render
+    const checkDialog = setInterval(() => {
+      const imageDialog = document.querySelector(".se-dialog-image");
+
+      if (imageDialog) {
+        console.log(imageDialog);
+        addBorderRadiusInput();
+        clearInterval(checkDialog);
+      }
+    }, 300);
+
+    return () => clearInterval(checkDialog);
+  }, []);
+  const handleImageUpload = (
+    targetImgElement,
+    index,
+    state,
+    imageInfo,
+    remainingFilesCount
+  ) => {
+    if (state === "create") {
+      const borderRadius =
+        localStorage.getItem("lastUsedBorderRadius") || "0px";
+      // Apply border radius to the inserted image
+      targetImgElement.style.borderRadius = borderRadius;
+      targetImgElement.style.transition = "border-radius 0.3s";
     }
-  },[])
+  };
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
 
     //---CUSTOM BORDER RADIUS
-    
   }; //---
 
   const fontWeightPlugin = {
@@ -147,57 +181,8 @@ export const WordEditor = () => {
       return listDiv;
     },
   };
-  const customColorPicker = {
-    name: 'customColorPicker',
-    display: 'command',
-    title: 'Color Picker',
-    buttonClass: '',
-    innerHTML: '<svg>...</svg>', // Replace with your icon SVG
-    add: function (core, targetElement) {
-      const pickerContainer = document.createElement('div');
-      pickerContainer.id = 'pickr-container';
-      document.body.appendChild(pickerContainer);
-  
-      const pickr = Pickr.create({
-        el: '#pickr-container',
-        theme: 'classic',
-        default: '#000000',
-        components: {
-          preview: true,
-          opacity: true,
-          hue: true,
-          interaction: {
-            hex: true,
-            rgba: true,
-            input: true,
-            clear: true,
-            save: true
-          }
-        }
-      });
-  
-      pickr.on('save', (color) => {
-        const selectedColor = color.toHEXA().toString();
-        core.execCommand('foreColor', selectedColor);
-        pickr.hide();
-      });
-  
-      this.pickrInstance = pickr;
-    },
-    action: function () {
-      if (this.pickrInstance) {
-        this.pickrInstance.show();
-      }
-    }
-  };
-  
-  
 
-  const allPlugins = [
-    ...Object.values(plugins),
-    fontWeightPlugin,
-    customColorPicker,
-  ];
+  const allPlugins = [...Object.values(plugins), fontWeightPlugin];
 
   return (
     <>
@@ -231,7 +216,7 @@ export const WordEditor = () => {
                     "lineHeight",
                     "link",
                     "image",
-                    "customColorPicker",
+
                     "video",
                   ],
                   ["removeFormat", "horizontalRule", "align", "list"],
@@ -294,6 +279,7 @@ export const WordEditor = () => {
                   "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure|iframe|video",
               }}
               onChange={onEditorChange}
+              onImageUpload={handleImageUpload}
             />
           </div>
         </div>
