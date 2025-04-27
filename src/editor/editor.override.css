@@ -21,6 +21,13 @@
 
   overflow: auto;
 }
+figure{
+  width:100% !important;
+  height:100%;
+}
+figure img{
+  margin:0px 0px !important;
+}
 /* Editor container image */
 .sun-editor-editable img {
   overflow: auto;
