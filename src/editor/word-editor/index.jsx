@@ -3,57 +3,179 @@ import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
-
-
+import ChromePicker from "react-color";
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
-const [Input,setinput]=useState("#90h456")
-  const input=(document.querySelector('._se_color_picker_input'))
-  const button= document.querySelector(".se-btn se-tooltip");
-  if(button){
-    console.log(button)
-  }
-  if(input){
-    input.classList.add("font-color")
-    input.classname+="font-color";
-    input.value=Input
-    console.log(input.value)
+  const selectedImageRef = useRef(null); // Ref to store selected image
 
-    input.addEventListener("change",(e)=>{
-setinput(e.target.value)
-    })
-    
-  }
+  //--- color plugins
+  const [showPicker, setShowPicker] = useState(false);
+  const [pickerMode, setPickerMode] = useState("color");
+
+  const [savedRange, setSavedRange] = useState(null);
+  const [fontPickedColor, setFontPickedColor] = useState(
+    localStorage.getItem("lastFontPickedColor") || "#000000"
+  );
+  const [backgroundPickedColor, setBackgroundPickedColor] = useState(
+    localStorage.getItem("lastBackgroundPickedColor") || "#ffffff"
+  );
+
+  window.addEventListener("click", () => {
+    setShowPicker(false);
+  });
+  const openColorPicker = (mode) => {
+    const selection = window.getSelection();
+
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      setSavedRange(range.cloneRange());
+    } else {
+      setSavedRange(null);
+    }
+
+    if (showPicker) {
+      if (pickerMode === mode) {
+        setShowPicker(false);
+      } else {
+        setPickerMode(mode);
+      }
+    } else {
+      setPickerMode(mode);
+      setShowPicker(true);
+    }
+  };
+
+  const handleApplyColor = (colorCode) => {
+    const selection = window.getSelection();
+
+    if (savedRange) {
+      selection.removeAllRanges();
+      selection.addRange(savedRange);
+    }
+
+    if (!selection || selection.rangeCount === 0) return;
+
+    document.execCommand("styleWithCSS", false, true);
+
+    if (!selection.isCollapsed) {
+      document.execCommand(
+        pickerMode === "color" ? "foreColor" : "hiliteColor",
+        false,
+        colorCode
+      );
+    } else {
+      const span = document.createElement("span");
+      span.style[pickerMode === "color" ? "color" : "backgroundColor"] =
+        colorCode;
+      span.appendChild(document.createTextNode("\u200B")); // invisible space
+      const range = window.getSelection().getRangeAt(0);
+      range.insertNode(span);
+      range.setStart(span.firstChild, 1);
+      range.setEnd(span.firstChild, 1);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+
+    if (pickerMode === "color") {
+      setFontPickedColor(colorCode);
+      localStorage.setItem("lastFontPickedColor", colorCode);
+    } else if (pickerMode === "background") {
+      setBackgroundPickedColor(colorCode);
+      localStorage.setItem("lastBackgroundPickedColor", colorCode);
+    }
+  };
+
+  const fontColorPlugin = {
+    name: "fontColor",
+    display: "command",
+    title: "Font Color",
+    innerHTML: "<button>A</button>",
+    add: function (core, targetElement) {
+      targetElement.addEventListener("click", (e) => {
+        e.stopPropagation(); //  Important to prevent SunEditor popup closing
+        e.preventDefault();
+        openColorPicker("color");
+      });
+    },
+    action: function (core) {
+      // You can open your picker here too if you want
+      openColorPicker("color");
+    },
+  };
+  const backgroundColorPlugin = {
+    name: "backgroundColor",
+    display: "command",
+    title: "backgroundColor",
+    innerHTML:
+      '<button style="background-color:black;color:white;padding:0px 5px;position:relative">A</button>',
+    add: function (core, targetElement) {
+      targetElement.addEventListener("click", (e) => {
+        e.stopPropagation(); //  Important to prevent SunEditor popup closing
+        e.preventDefault();
+        openColorPicker("backgroundColor");
+      });
+    },
+    action: function (core) {
+      // You can open your picker here too if you want
+      openColorPicker("backgroundColor");
+    },
+  }; //---- color plugins
+
+  //--border radius
+  useEffect(() => {
+    const editorContent = editorRef.current?.core?.context?.element?.wysiwyg;
+    if (!editorContent) return;
+
+    const handleClick = (event) => {
+      const target = event.target;
+      const figure = target.closest("figure");
+      if (figure) {
+        const img = figure.querySelector("img");
+        if (img) {
+          selectedImageRef.current = img;
+          const range = document.createRange();
+          const selection = window.getSelection();
+          range.selectNode(img); // Select the image
+          selection.removeAllRanges(); // Clear any previous selections
+          selection.addRange(range);
+        }
+      }
+    };
+
+    editorContent.addEventListener("click", handleClick);
+
+    return () => {
+      editorContent.removeEventListener("click", handleClick);
+    };
+  }, []);
+
   useEffect(() => {
     const addBorderRadiusInput = () => {
       const dialogBox = editorRef.current?.core?.context?.image?.modal;
-      console.log(dialogBox);
       if (!dialogBox) return;
 
       const imageDialogBody = dialogBox.querySelector(".se-dialog-body");
 
-      // Prevent duplicates
       if (imageDialogBody.querySelector(".border-radius-input")) return;
 
-      // Label
+      // Create and add label for border radius input
       const label = document.createElement("label");
       label.innerText = "Border Radius";
       label.style.marginRight = "8px";
 
-      // Input
+      // Create  border radius input field
       const input = document.createElement("input");
       input.className = "se-input-form border-radius-input";
       input.type = "text";
       input.style.width = "100%";
 
-      // Get saved value or fallback
+      // Retrieve and set last used border radius from local storage
       const savedRadius = localStorage.getItem("lastUsedBorderRadius") || "0px";
       input.value = savedRadius;
-      console.log(savedRadius);
 
-      // Combine into div
+      // Create div container for the label and input
       const div = document.createElement("div");
       div.className = "se-dialog-form";
       div.style.marginTop = "10px";
@@ -62,35 +184,27 @@ setinput(e.target.value)
 
       imageDialogBody.appendChild(div);
 
-      // Apply on insert
+      // Apply border radius to selected image on submit
       const insertButton = dialogBox.querySelector(".se-btn-primary");
       insertButton?.addEventListener("click", () => {
         const borderRadius = input.value;
-        localStorage.setItem("lastUsedBorderRadius", borderRadius);
-        console.log(borderRadius);
-        setTimeout(() => {
-          const images =
-            editorRef.current?.core.context.element.wysiwyg.querySelectorAll(
-              "img"
-            );
-          const latestImage = images?.[images.length - 1];
-          if (latestImage) {
-            latestImage.style.borderRadius = borderRadius;
-            latestImage.style.transition = "border-radius 0.3s";
-            editorRef.current?.core.context.element.wysiwyg.dispatchEvent(
-              new Event("input")
-            );
-          }
-        }, 0);
+        localStorage.setItem("lastUsedBorderRadius", borderRadius); // Store in local storage
+
+        // Apply border radius to selected image using the ref
+        if (selectedImageRef.current) {
+          selectedImageRef.current.style.borderRadius = borderRadius;
+          selectedImageRef.current.style.transition = "border-radius 0.3s"; // Apply transition
+          editorRef.current?.core.context.element.wysiwyg.dispatchEvent(
+            new Event("input") // Trigger input event for editor update
+          );
+        }
       });
     };
 
     // Wait for image dialog to render
     const checkDialog = setInterval(() => {
       const imageDialog = document.querySelector(".se-dialog-image");
-
       if (imageDialog) {
-        console.log(imageDialog);
         addBorderRadiusInput();
         clearInterval(checkDialog);
       }
@@ -98,26 +212,14 @@ setinput(e.target.value)
 
     return () => clearInterval(checkDialog);
   }, []);
-  const handleImageUpload = (
-    targetImgElement,
-    index,
-    state,
-    imageInfo,
-    remainingFilesCount
-  ) => {
-    if (state === "create") {
-      const borderRadius =
-        localStorage.getItem("lastUsedBorderRadius") || "0px";
-      // Apply border radius to the inserted image
-      targetImgElement.style.borderRadius = borderRadius;
-      targetImgElement.style.transition = "border-radius 0.3s";
-    }
-  };
+  //-- border radius
+
+  //-- editor instance
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
-
-    //---CUSTOM BORDER RADIUS
   }; //---
+
+  //-- fontweight plugin
 
   const fontWeightPlugin = {
     name: "fontWeight",
@@ -157,9 +259,14 @@ setinput(e.target.value)
 
       return listDiv;
     },
-  };
+  }; //-- fontweight plugin
 
-  const allPlugins = [...Object.values(plugins), fontWeightPlugin];
+  const allPlugins = [
+    ...Object.values(plugins),
+    fontWeightPlugin,
+    fontColorPlugin,
+    backgroundColorPlugin,
+  ];
 
   return (
     <>
@@ -177,7 +284,6 @@ setinput(e.target.value)
               getSunEditorInstance={getSunEditorInstance}
               defaultValue={Content}
               height="100%"
-              setDefaultStyle={`color:${Input}`}
               setOptions={{
                 plugins: allPlugins,
                 buttonList: [
@@ -188,9 +294,7 @@ setinput(e.target.value)
                     "formatBlock",
                     "fontWeight",
                     "fontColor",
-
-                    "hiliteColor",
-
+                    "backgroundColor",
                     "lineHeight",
                     "link",
                     "image",
@@ -257,9 +361,77 @@ setinput(e.target.value)
                   "p|div|b|strong|i|u|em|u|s|strike|del|sub|sup|img|a|h1|h2|h3|h4|ul|ol|li|table|tr|td|th|thead|tbody|figcaption|figure|iframe|video",
               }}
               onChange={onEditorChange}
-              onImageUpload={handleImageUpload}
             />
           </div>
+        </div>
+      )}
+      {showPicker && (
+        <div
+          style={{
+            position: "absolute",
+            top: 100,
+            left: "30%",
+            zIndex: 2000,
+            background: "white",
+            padding: "10px",
+            boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+            borderRadius: "8px",
+          }}
+          onClick={(e) => e.stopPropagation()} //  prevent SunEditor from closing on click inside
+        >
+          <ChromePicker
+            color={
+              pickerMode === "color" ? fontPickedColor : backgroundPickedColor
+            }
+            onChange={(color) => {
+              if (pickerMode === "color") {
+                setFontPickedColor(color.hex);
+              } else {
+                setBackgroundPickedColor(color.hex);
+              }
+            }}
+            onChangeComplete={(color) => {
+              if (pickerMode === "color") {
+                setFontPickedColor(color.hex);
+              } else {
+                setBackgroundPickedColor(color.hex);
+              }
+            }}
+          />
+
+          <button
+            onClick={() => {
+              const colorToApply =
+                pickerMode === "color"
+                  ? fontPickedColor
+                  : backgroundPickedColor;
+              handleApplyColor(colorToApply);
+
+              // Save separately
+              if (pickerMode === "color") {
+                localStorage.setItem("lastFontPickedColor", fontPickedColor);
+              } else {
+                localStorage.setItem(
+                  "lastBackgroundPickedColor",
+                  backgroundPickedColor
+                );
+              }
+
+              setShowPicker(false);
+            }}
+            style={{
+              border: "1px solid #2a2626",
+              fontSize: "12px",
+              padding: "5px",
+              marginTop: "5px",
+              backgroundColor: "ghostwhite",
+              color: "#2a2626",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Apply Color
+          </button>
         </div>
       )}
     </>
