@@ -3,24 +3,25 @@ import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
-import ChromePicker from "react-color";
+import { ColorPicker } from "antd";
+
+// import 'antd/dist/antd.css';
 
 export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
-  const selectedImageRef = useRef(null); // Ref to store selected image
+  const selectedImageRef = useRef(null);
+  // Ref to store selected image
 
-  //--- color plugins
+  // //--- color plugins
   const [showPicker, setShowPicker] = useState(false);
   const [pickerMode, setPickerMode] = useState("color");
 
   const [savedRange, setSavedRange] = useState(null);
-  const [fontPickedColor, setFontPickedColor] = useState(
-    localStorage.getItem("lastFontPickedColor") || "#000000"
-  );
-  const [backgroundPickedColor, setBackgroundPickedColor] = useState(
-    localStorage.getItem("lastBackgroundPickedColor") || "#ffffff"
-  );
+  // console.log(savedRange)
+  const [fontPickedColor, setFontPickedColor] = useState("#000000");
+
+  const [backgroundPickedColor, setBackgroundPickedColor] = useState("#ffffff");
 
   window.addEventListener("click", () => {
     setShowPicker(false);
@@ -90,8 +91,8 @@ export const WordEditor = () => {
   const fontColorPlugin = {
     name: "fontColor",
     display: "command",
-    title: "Font Color",
-    innerHTML: "<button>A</button>",
+    title: "Font-color",
+    innerHTML: "<button ></button>",
     add: function (core, targetElement) {
       targetElement.addEventListener("click", (e) => {
         e.stopPropagation(); //  Important to prevent SunEditor popup closing
@@ -107,7 +108,7 @@ export const WordEditor = () => {
   const backgroundColorPlugin = {
     name: "backgroundColor",
     display: "command",
-    title: "backgroundColor",
+    title: "background color",
     innerHTML:
       '<button style="background-color:black;color:white;padding:0px 5px;position:relative">A</button>',
     add: function (core, targetElement) {
@@ -121,7 +122,9 @@ export const WordEditor = () => {
       // You can open your picker here too if you want
       openColorPicker("backgroundColor");
     },
-  }; //---- color plugins
+  };
+
+  //---- color plugins
 
   //--border radius
   useEffect(() => {
@@ -129,9 +132,9 @@ export const WordEditor = () => {
     if (!editorContent) return;
 
     const handleClick = (event) => {
-      const target = event.target;
-      const figure = target.closest("figure");
-      if (figure) {
+      const figure = event.target;
+
+      if (figure.tagName === "FIGURE") {
         const img = figure.querySelector("img");
         if (img) {
           selectedImageRef.current = img;
@@ -220,7 +223,6 @@ export const WordEditor = () => {
   }; //---
 
   //-- fontweight plugin
-
   const fontWeightPlugin = {
     name: "fontWeight",
     display: "submenu",
@@ -273,7 +275,6 @@ export const WordEditor = () => {
       {Editor && (
         <div
           style={{
-            width: "100%",
             height: "100%",
             borderBottom: "none",
             transform: "translateX(0)",
@@ -336,14 +337,13 @@ export const WordEditor = () => {
                 attributesBlacklist: {
                   //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
                   strong: "style",
-                  div: "style",
+
                   h1: "style",
                   h2: "style",
                   h3: "style",
                   h4: "style",
                   h5: "style",
                   h6: "style",
-                  figure: "style",
 
                   ul: "style",
                   ol: "style",
@@ -352,6 +352,7 @@ export const WordEditor = () => {
 
                 attributesWhitelist: {
                   span: "style",
+
                   //if we want to add styles to an element we can write it using span tag
                 },
                 TagsWhitelist: "span",
@@ -369,69 +370,56 @@ export const WordEditor = () => {
         <div
           style={{
             position: "absolute",
-            top: 100,
-            left: "30%",
+            top: "15%",
+            left: "45%",
             zIndex: 2000,
             background: "white",
             padding: "10px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
             borderRadius: "8px",
           }}
-          onClick={(e) => e.stopPropagation()} //  prevent SunEditor from closing on click inside
+          onClick={(e) => e.stopPropagation()} // Prevent SunEditor from closing on click inside
         >
-          <ChromePicker
-            color={
+          <ColorPicker
+            value={
               pickerMode === "color" ? fontPickedColor : backgroundPickedColor
             }
+            panelRender={(panel) => panel}
+            presets={[]}
+            open={true}
+            // Keep the picker open
+            showText={false} // Hide the text
             onChange={(color) => {
               if (pickerMode === "color") {
-                setFontPickedColor(color.hex);
+                setFontPickedColor(color.toHexString());
               } else {
-                setBackgroundPickedColor(color.hex);
+                setBackgroundPickedColor(color.toHexString());
               }
             }}
             onChangeComplete={(color) => {
               if (pickerMode === "color") {
-                setFontPickedColor(color.hex);
+                setFontPickedColor(color.toHexString()); // Update color
               } else {
-                setBackgroundPickedColor(color.hex);
+                setBackgroundPickedColor(color.toHexString());
               }
             }}
           />
+          {
+            <button
+              onClick={() => {
+                const colorToApply =
+                  pickerMode === "color"
+                    ? fontPickedColor
+                    : backgroundPickedColor;
+                handleApplyColor(colorToApply);
 
-          <button
-            onClick={() => {
-              const colorToApply =
-                pickerMode === "color"
-                  ? fontPickedColor
-                  : backgroundPickedColor;
-              handleApplyColor(colorToApply);
-
-              // Save separately
-              if (pickerMode === "color") {
-                localStorage.setItem("lastFontPickedColor", fontPickedColor);
-              } else {
-                localStorage.setItem(
-                  "lastBackgroundPickedColor",
-                  backgroundPickedColor
-                );
-              }
-
-              setShowPicker(false);
-            }}
-            style={{
-              border: "1px solid #2a2626",
-              fontSize: "12px",
-              padding: "5px",
-              marginTop: "5px",
-              backgroundColor: "ghostwhite",
-              color: "#2a2626",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Apply Color
-          </button>
+                setShowPicker(false);
+              }}
+              className="color_button"
+            >
+              Apply Color
+            </button>
+          }
         </div>
       )}
     </>
