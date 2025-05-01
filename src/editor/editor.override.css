@@ -2,7 +2,6 @@
   --default-color:"#000000";
   --default-bgcolor:"#ffffff";
 }
-
 /* Editor toolbar  */
 .sun-editor .se-toolbar {
   outline: none !important;
@@ -20,8 +19,9 @@
 .sun-editor-editable {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  color: var(--default-color);
+  color:var(--default-color);
   background-color: var(--default-bgcolor);
+
   padding: 14px;
   flex: 1;
   overflow: scroll;

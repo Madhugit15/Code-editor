@@ -129,7 +129,19 @@ body {
   height: 470px;
   position: relative;
 }
-
+.color_button{
+  background-color: #283739;
+  color:rgb(230, 226, 226);
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.color_button:hover{
+  background-color: #3c4446;
+  transition: 0.3s all linear;
+}
 .preview {
   width: 90%;
   margin: auto;
