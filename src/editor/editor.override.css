@@ -71,16 +71,32 @@
 .sun-editor .se-resizing-bar {
   position: fixed;
   top: 100%;
-  z-index: 10;
+
   width: 100%;
   margin: auto;
   border: 1px solid #d4d4d4;
   border-radius: 0px 0px 4px 4px;
 }
+.se-controller .se-controller-resizing {
+  z-index: 1000;
+}
 .sun-editor .se-list-layer {
   border: 1px solid #bababa00;
   box-shadow: 0 3px 9px rgb(0 0 0 / 10%);
   margin-top: 5px;
+}
+
+.color_picker {
+  position: relative;
+  bottom: 95%;
+  left: 40%;
+  width: 0px;
+  z-index: 2000;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  visibility: hidden;
 }
 
 @media screen and (max-width: 1078px) {
