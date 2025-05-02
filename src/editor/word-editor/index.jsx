@@ -92,7 +92,7 @@ export const WordEditor = () => {
     name: "fontColor",
     display: "command",
     title: "Font-color",
-    innerHTML: "<button >A</button>",
+    innerHTML: '<button style="position:relative">A</button>',
     add: function (core, targetElement) {
       targetElement.addEventListener("click", (e) => {
         e.stopPropagation(); //  Important to prevent SunEditor popup closing
