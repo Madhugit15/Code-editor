@@ -116,6 +116,7 @@ body {
   color: #006ef4;
   display: grid;
   padding: 0px 20px;
+  font-size: 16px;
   margin-right: 10px;
   letter-spacing: 1px;
   height: 40px;
@@ -163,7 +164,7 @@ body {
 @media screen and (max-width: 346px) {
   .nav {
     padding: 0px 10px;
-    font-size: 13px;
+    font-size: 10px;
   }
 }
 @media screen and (max-width: 538px) {

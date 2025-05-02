@@ -138,11 +138,11 @@ export const WordEditor = () => {
         const img = figure.querySelector("img");
         if (img) {
           selectedImageRef.current = img;
-          const range = document.createRange();
-          const selection = window.getSelection();
-          range.selectNode(img); // Select the image
-          selection.removeAllRanges(); // Clear any previous selections
-          selection.addRange(range);
+          // const range = document.createRange();
+          // const selection = window.getSelection();
+          // range.selectNode(img); // Select the image
+          // selection.removeAllRanges(); // Clear any previous selections
+          // selection.addRange(range);
         }
       }
     };
@@ -277,7 +277,9 @@ export const WordEditor = () => {
           style={{
             height: "100%",
             borderBottom: "none",
+           
             transform: "translateX(0)",
+            // overflowX:"-moz-hidden-unscrollable"
           }}
         >
           <div style={{ height: "100%" }}>
