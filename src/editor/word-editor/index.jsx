@@ -3,7 +3,7 @@ import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
 import "suneditor/dist/css/suneditor.min.css";
 import { htmlCode } from "..";
-import { ColorPicker } from "antd";
+import { ColorPicker, Button } from "antd";
 
 // import 'antd/dist/antd.css';
 
@@ -92,7 +92,7 @@ export const WordEditor = () => {
     name: "fontColor",
     display: "command",
     title: "Font-color",
-    innerHTML: "<button ></button>",
+    innerHTML: "<button >A</button>",
     add: function (core, targetElement) {
       targetElement.addEventListener("click", (e) => {
         e.stopPropagation(); //  Important to prevent SunEditor popup closing
@@ -368,23 +368,34 @@ export const WordEditor = () => {
       )}
       {showPicker && (
         <div
-          style={{
-            position: "absolute",
-            top: "15%",
-            left: "45%",
-            zIndex: 2000,
-            background: "white",
-            padding: "10px",
-            boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-            borderRadius: "8px",
-          }}
+          className="color_picker"
           onClick={(e) => e.stopPropagation()} // Prevent SunEditor from closing on click inside
         >
           <ColorPicker
             value={
               pickerMode === "color" ? fontPickedColor : backgroundPickedColor
             }
-            panelRender={(panel) => panel}
+            panelRender={(panel) => (
+              <div>
+                {panel}
+                <div style={{ textAlign: "right" }}>
+                  <Button
+                    size="medium"
+                    onClick={() => {
+                      const colorToApply =
+                        pickerMode === "color"
+                          ? fontPickedColor
+                          : backgroundPickedColor;
+                      handleApplyColor(colorToApply);
+
+                      setShowPicker(false);
+                    }}
+                  >
+                    Apply
+                  </Button>
+                </div>
+              </div>
+            )}
             presets={[]}
             open={true}
             // Keep the picker open
@@ -404,22 +415,6 @@ export const WordEditor = () => {
               }
             }}
           />
-          {
-            <button
-              onClick={() => {
-                const colorToApply =
-                  pickerMode === "color"
-                    ? fontPickedColor
-                    : backgroundPickedColor;
-                handleApplyColor(colorToApply);
-
-                setShowPicker(false);
-              }}
-              className="color_button"
-            >
-              Apply Color
-            </button>
-          }
         </div>
       )}
     </>

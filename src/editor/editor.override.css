@@ -1,6 +1,6 @@
-:root{
-  --default-color:"#000000";
-  --default-bgcolor:"#ffffff";
+:root {
+  --default-color: "#000000";
+  --default-bgcolor: "#ffffff";
 }
 /* Editor toolbar  */
 .sun-editor .se-toolbar {
@@ -19,7 +19,7 @@
 .sun-editor-editable {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  color:var(--default-color);
+  color: var(--default-color);
   background-color: var(--default-bgcolor);
 
   padding: 14px;
@@ -28,15 +28,11 @@
   overflow: auto;
 }
 
-
-
 /* Editor container image */
 .sun-editor-editable img {
   overflow: auto;
 }
-.ͼ1 .cm-scroller {
-  padding: 14px;
-}
+
 
 .ͼ1 {
   height: 100%;
@@ -87,9 +83,22 @@
   box-shadow: 0 3px 9px rgb(0 0 0 / 10%);
   margin-top: 5px;
 }
-.sun-editor .se-controller-resizing {
-  z-index: 10;
+.ant-popover-inner {
+  position: relative;
 }
+.color_picker {
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  z-index: 2000;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  visibility: hidden;
+}
+ 
+
 
 @media screen and (max-width: 1078px) {
   .sun-editor .se-toolbar {
