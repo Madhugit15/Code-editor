@@ -25,8 +25,8 @@
 
   padding: 14px;
   flex: 1;
-  overflow: scroll;
-  /* overflow: auto; */
+  overflow-y: hidden;
+  overflow: auto;
 }
 
 /* Editor container image */
@@ -54,7 +54,6 @@
 }
 
 .sun-editor .se-wrapper {
-  overflow: auto;
   height: 90%;
   overflow-x: hidden;
   border-left: 1px solid #d4d4d4;
@@ -74,7 +73,7 @@
   top: 100%;
   right: 0;
   left: 0;
-  
+
   margin: auto;
   border: 1px solid #d4d4d4;
   border-radius: 0px 0px 4px 4px;
@@ -87,7 +86,16 @@
   box-shadow: 0 3px 9px rgb(0 0 0 / 10%);
   margin-top: 5px;
 }
-
+.sun-editor .se-btn-tray {
+  width: calc(100% - 10px);
+}
+/* .sun-editor button *{
+  pointer-events: all;
+} */
+#font-color-container button,
+#background-color-container button {
+  pointer-events: all;
+}
 @media screen and (max-width: 1078px) {
   .sun-editor .se-toolbar {
     height: 15%;
