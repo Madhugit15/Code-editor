@@ -146,9 +146,15 @@ body {
   overflow-x: hidden;
 }
 
-@media screen and (max-width: 346px) {
+/* @media screen and (max-width: 346px) {
   .nav {
     padding: 0px 10px;
     font-size: 13px;
   }
 }
+@media screen and (max-width: 325px) {
+  .nav {
+    padding: 0px;
+    font-size: 13px;
+  }
+} */

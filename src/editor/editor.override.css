@@ -87,7 +87,7 @@
   margin-top: 5px;
 }
 .sun-editor .se-btn-tray {
-  width: calc(100% - 10px);
+  width: calc(100% - 30px);
 }
 /* .sun-editor button *{
   pointer-events: all;
@@ -121,6 +121,13 @@
     height: 72%;
   }
 }
+@media screen and (max-width: 359px) {
+  :where(.css-1v5z42l).ant-popover .ant-popover-inner {
+    position: relative;
+    right:60% !important;
+  }
+}
+
 @media screen and (max-width: 323px) {
   .sun-editor .se-toolbar {
     height: 35%;

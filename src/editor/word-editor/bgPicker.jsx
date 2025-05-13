@@ -4,6 +4,7 @@ import { Button, ColorPicker } from "antd";
 const BackgroundColorButton = ({ core }) => {
   const [bgColor, setBgColor] = useState("#ffffff");
   const [savedRange, setSavedRange] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
   const openColorPicker = () => {
     const selection = window.getSelection();
 
@@ -13,6 +14,7 @@ const BackgroundColorButton = ({ core }) => {
     } else {
       setSavedRange(null);
     }
+    setShowPicker(true);
   };
 
   const handleApplyColor = (colorCode) => {
@@ -43,6 +45,7 @@ const BackgroundColorButton = ({ core }) => {
 
     setBgColor(colorCode);
   };
+
   return (
     <ColorPicker
       panelRender={(panel) => (
@@ -53,6 +56,7 @@ const BackgroundColorButton = ({ core }) => {
               size="medium"
               onClick={() => {
                 handleApplyColor(bgColor);
+                setShowPicker(false);
               }}
             >
               Apply
@@ -60,6 +64,10 @@ const BackgroundColorButton = ({ core }) => {
           </div>
         </div>
       )}
+      open={showPicker}
+      onOpenChange={() => {
+        setShowPicker(true);
+      }}
       backgroundColor={bgColor}
       onChange={(color) => {
         setBgColor(color.toHexString());

@@ -6,6 +6,7 @@ const FontColorButton = ({ core }) => {
   const [color, setColor] = useState("#000000");
 
   const [savedRange, setSavedRange] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
   const openColorPicker = () => {
     const selection = window.getSelection();
 
@@ -15,6 +16,7 @@ const FontColorButton = ({ core }) => {
     } else {
       setSavedRange(null);
     }
+    setShowPicker(true);
   };
 
   const handleApplyColor = (colorCode) => {
@@ -44,7 +46,9 @@ const FontColorButton = ({ core }) => {
     }
 
     setColor(colorCode);
+    
   };
+
   return (
     <ColorPicker
       panelRender={(panel) => (
@@ -55,6 +59,7 @@ const FontColorButton = ({ core }) => {
               size="medium"
               onClick={(e) => {
                 handleApplyColor(color);
+                setShowPicker(false);
               }}
             >
               Apply
@@ -62,6 +67,8 @@ const FontColorButton = ({ core }) => {
           </div>
         </div>
       )}
+      open={showPicker}
+      onOpenChange={()=>{setShowPicker(true)}}
       value={color}
       onChange={(color) => {
         setColor(color.toHexString());

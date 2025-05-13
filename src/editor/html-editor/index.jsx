@@ -26,7 +26,6 @@ export const HtmlEditor = () => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            
           }}
         >
           <CodeMirror
@@ -47,8 +46,7 @@ export const HtmlEditor = () => {
               border: "1px solid #d4d4d4 ",
               overflow: "auto",
               borderRadius: "10px",
-              padding:"14px"
-
+              padding: "14px 0px",
             }}
           />
         </div>
