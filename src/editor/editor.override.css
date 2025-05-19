@@ -96,7 +96,7 @@
 #background-color-container button {
   pointer-events: all;
 }
-@media screen and (max-width: 1078px) {
+@media screen and (max-width: 1113px) {
   .sun-editor .se-toolbar {
     height: 15%;
   }
@@ -104,7 +104,7 @@
     height: 85%;
   }
 }
-@media screen and (max-width: 792px) {
+@media screen and (max-width: 840px) {
   .sun-editor .se-toolbar {
     height: 22%;
   }
@@ -113,7 +113,7 @@
     overflow: hidden !important;
   }
 }
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 637px) {
   .sun-editor .se-toolbar {
     height: 28%;
   }
@@ -121,14 +121,8 @@
     height: 72%;
   }
 }
-@media screen and (max-width: 359px) {
-  :where(.css-1v5z42l).ant-popover .ant-popover-inner {
-    position: relative;
-    right:60% !important;
-  }
-}
 
-@media screen and (max-width: 323px) {
+@media screen and (max-width: 356px) {
   .sun-editor .se-toolbar {
     height: 35%;
   }
@@ -136,7 +130,7 @@
     height: 65%;
   }
 }
-@media screen and (max-width: 312px) {
+@media screen and (max-width: 345px) {
   .sun-editor .se-toolbar {
     height: 42%;
   }

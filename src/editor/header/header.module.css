@@ -33,3 +33,9 @@
   color: #fff;
   background: #006ef4;
 }
+@media screen and (max-width: 340px) {
+ .headerContainer li {
+    padding: 0px 15px;
+    font-size: 13px;
+  }
+} 
