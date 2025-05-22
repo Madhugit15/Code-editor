@@ -26,7 +26,47 @@ const Editor = ({ children, showHeader }) => {
   }, [Content]);
 
   function onEditorChange(content) {
-    setContent(content);
+    function cleanFloatClasses(html) {
+      // Handle divs with existing style attributes
+      html = html
+        .replace(
+          /<div([^>]*)class="([^"]*\b__se__float-right\b[^"]*)"([^>]*)style="([^"]*)"([^>]*)>/g,
+          (match, p1, p2, p3, style, p5) =>
+            `<div${p1}${p3}style="${style}; float: right; margin-left: 1em;"${p5}>`
+        )
+        .replace(
+          /<div([^>]*)class="([^"]*\b__se__float-left\b[^"]*)"([^>]*)style="([^"]*)"([^>]*)>/g,
+          (match, p1, p2, p3, style, p5) =>
+            `<div${p1}${p3}style="${style}; float: left; margin-right: 1em;"${p5}>`
+        );
+
+      // Handle divs WITHOUT style attributes
+      html = html
+        .replace(
+          /<div([^>]*)class="([^"]*\b__se__float-right\b[^"]*)"([^>]*)>/g,
+          (match, p1, p2, p3) =>
+            `<div${p1}style="float: right; margin-left: 1em;"${p3}>`
+        )
+        .replace(
+          /<div([^>]*)class="([^"]*\b__se__float-left\b[^"]*)"([^>]*)>/g,
+          (match, p1, p2, p3) =>
+            `<div${p1}style="float: left; margin-right: 1em;"${p3}>`
+        );
+
+      // Add margin: 0 auto to <figure> inside float-center divs
+      html = html.replace(
+        /(<div[^>]*class="[^"]*\b__se__float-center\b[^"]*"[^>]*>[\s\S]*?)(<figure[^>]*style=")([^"]*)(")/g,
+        (match, before, figureStart, style, quote) => {
+          if (style.includes("margin: 0 auto")) return match;
+          return `${before}${figureStart}${style}; margin: 0 auto${quote}`;
+        }
+      );
+      html = html.replace(/\b__se__float-(left|right|center)\b\s*/g, "");
+      return html;
+    }
+
+    const htmlContent = cleanFloatClasses(content);
+    setContent(htmlContent);
   }
 
   function onHtmlChange(value) {

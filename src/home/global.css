@@ -73,18 +73,3 @@ body {
   height: 470px;
 }
 
-.preview {
-  width: 90%;
-  margin: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  border: 1px solid #b1b1b1;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.preview .sun-editor-editable {
-  overflow: auto;
-  overflow-x: hidden;
-}

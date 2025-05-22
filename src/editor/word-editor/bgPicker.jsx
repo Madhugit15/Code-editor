@@ -14,7 +14,8 @@ const BackgroundColorButton = ({ core }) => {
     } else {
       setSavedRange(null);
     }
-    setShowPicker(true);
+    setShowPicker(!showPicker);
+    
   };
 
   const handleApplyColor = (colorCode) => {
@@ -45,7 +46,7 @@ const BackgroundColorButton = ({ core }) => {
 
     setBgColor(colorCode);
   };
-
+ 
   return (
     <ColorPicker
       panelRender={(panel) => (
@@ -65,8 +66,8 @@ const BackgroundColorButton = ({ core }) => {
         </div>
       )}
       open={showPicker}
-      onOpenChange={() => {
-        setShowPicker(true);
+      onOpenChange={(open) => {
+        setShowPicker(open);
       }}
       backgroundColor={bgColor}
       onChange={(color) => {

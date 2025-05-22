@@ -13,6 +13,7 @@ export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
   const selectedImageRef = useRef(null);
+ 
 
   const backgroundColorPlugin = {
     name: "backgroundColor",
@@ -254,10 +255,12 @@ export const WordEditor = () => {
                   ul: "style",
                   ol: "style",
                   li: "style",
+                 
                 },
 
                 attributesWhitelist: {
                   span: "style",
+                
 
                   //if we want to add styles to an element we can write it using span tag
                 },

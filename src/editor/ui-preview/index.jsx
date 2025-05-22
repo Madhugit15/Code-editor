@@ -7,7 +7,7 @@ import "suneditor/dist/css/suneditor.min.css";
 import "suneditor/dist/css/suneditor.min.css";
 import "../editor.override.css";
 
-import styles from "./preview.module.css"
+import styles from "./preview.module.css";
 
 export const UIPreview = () => {
   const { Preview, Content } = useContext(htmlCode);
@@ -15,9 +15,11 @@ export const UIPreview = () => {
     <Fragment>
       {Preview && (
         <div className={styles.previewContainer}>
-          <div className="sun-editor-editable">
-            <div dangerouslySetInnerHTML={{ __html: Content }} />
-          </div>
+         
+            <div className="sun-editor-editable">
+              <div dangerouslySetInnerHTML={{ __html: Content }} />
+            </div>
+          
         </div>
       )}
     </Fragment>

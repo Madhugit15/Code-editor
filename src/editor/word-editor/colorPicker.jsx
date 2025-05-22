@@ -16,7 +16,7 @@ const FontColorButton = ({ core }) => {
     } else {
       setSavedRange(null);
     }
-    setShowPicker(true);
+    setShowPicker(!showPicker);
   };
 
   const handleApplyColor = (colorCode) => {
@@ -46,7 +46,6 @@ const FontColorButton = ({ core }) => {
     }
 
     setColor(colorCode);
-    
   };
 
   return (
@@ -68,7 +67,9 @@ const FontColorButton = ({ core }) => {
         </div>
       )}
       open={showPicker}
-      onOpenChange={()=>{setShowPicker(true)}}
+      onOpenChange={(open) => {
+        setShowPicker(open);
+      }}
       value={color}
       onChange={(color) => {
         setColor(color.toHexString());
