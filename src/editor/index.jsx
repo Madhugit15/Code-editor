@@ -6,7 +6,8 @@ import Header from "./header";
 import { UIPreview } from "./ui-preview";
 import { HtmlEditor } from "./html-editor";
 import { WordEditor } from "./word-editor";
-
+ import "suneditor/dist/css/suneditor.min.css"; // For editor, not needed in preview iframe
+ import "./editor.override.css";
 import styles from "./editor.module.css";
 
 //Context api for global state management

@@ -13,7 +13,6 @@ export const WordEditor = () => {
   const { Editor, onEditorChange, Content } = useContext(htmlCode);
   const editorRef = useRef(null);
   const selectedImageRef = useRef(null);
- 
 
   const backgroundColorPlugin = {
     name: "backgroundColor",
@@ -241,26 +240,8 @@ export const WordEditor = () => {
 
                 resizeEnable: true,
 
-                attributesBlacklist: {
-                  //used to prevent unwanted style addition in the html code which is rendered by the content pasted in the editor
-                  strong: "style",
-
-                  h1: "style",
-                  h2: "style",
-                  h3: "style",
-                  h4: "style",
-                  h5: "style",
-                  h6: "style",
-
-                  ul: "style",
-                  ol: "style",
-                  li: "style",
-                 
-                },
-
                 attributesWhitelist: {
                   span: "style",
-                
 
                   //if we want to add styles to an element we can write it using span tag
                 },
