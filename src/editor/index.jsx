@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useRef} from "react";
 import { createContext } from "react";
 
 import Header from "./header";
@@ -18,6 +18,8 @@ const Editor = ({ children, showHeader }) => {
   const [Html, setHtml] = useState(false);
   const [Preview, setPreview] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
+  const [showPreview, setShowPreview]=useState("")
+    const editorRef = useRef(null);
   const [Content, setContent] = useState(() => {
     return localStorage.getItem("items") || ""; //get the content stored in local storage
   });
@@ -90,6 +92,7 @@ const Editor = ({ children, showHeader }) => {
           onHtmlChange,
           selectedImg,
           setSelectedImg,
+          editorRef,showPreview, setShowPreview
         }}
       >
         {showHeader && <Header />}

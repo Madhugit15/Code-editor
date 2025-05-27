@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import SunEditor from "suneditor-react";
 import plugins from "suneditor/src/plugins";
@@ -10,9 +10,10 @@ import { createRoot } from "react-dom/client";
 import BackgroundColorButton from "./bgPicker";
 
 export const WordEditor = () => {
-  const { Editor, onEditorChange, Content } = useContext(htmlCode);
-  const editorRef = useRef(null);
+  const { Editor, editorRef, onEditorChange, Content , setShowPreview} = useContext(htmlCode);
+console.log(editorRef.current?.core?.preview)
   const selectedImageRef = useRef(null);
+
 
   const backgroundColorPlugin = {
     name: "backgroundColor",
@@ -127,6 +128,7 @@ export const WordEditor = () => {
   //-- editor instance
   const getSunEditorInstance = (sunEditor) => {
     editorRef.current = sunEditor;
+    setShowPreview(editorRef.current.core)
   }; //---
 
   //-- fontweight plugin
@@ -207,6 +209,7 @@ export const WordEditor = () => {
                     "link",
                     "image",
                     "video",
+                    
                   ],
                   ["removeFormat", "horizontalRule", "align", "list"],
                   ["subscript", "superscript", "blockquote"],

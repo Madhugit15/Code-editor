@@ -24,22 +24,94 @@
 .Preview_header {
   font-family: "Poppins", sans-serif;
   border: 1px solid #dadada;
-  border-bottom:0px;
+  border-bottom: 0px;
   border-radius: 5px 5px 0px 0px;
-  height:10%;
+  height: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  background-color: #e6f7ff;
+  padding: 8px;
+}
+.preview_content {
+  line-height: 1.5;
+  color: #0056b3;
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 3px;
-  padding:8px;
-  line-height: 1.5;
-  color:#0056b3;
-  background-color:#e6f7ff ;
   font-size: 13px;
   word-spacing: 1px;
 }
+.preview_buttons {
+  display: flex;
+  justify-content: space-around;
+  column-gap: 8px;
+  position: relative;
+}
+.preview_buttons button {
+  padding: 4px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-color: ghostwhite;
+  border: 1px solid #0056b3;
+  border-radius: 6px;
+  transition: 0.4s all linear;
+}
+.preview_buttons button:hover {
+  background-color: #caecff;
+}
 .Preview_iframe {
   height: 90%;
+}
+
+.tooltip1 {
+  position: absolute;
+  top: 130%;
+  left: 20%;
+  transform: translateX(-50%);
+  background-color: #0056b3;
+  color: white;
+  padding: 4px 0px;
+  border-radius: 2px;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 9999;
+  width: 100px;
+  height: 18px;
+  font-size: 10px;
+  text-align: center;
+  visibility: hidden;
+}
+.preview_buttons button:first-of-type:hover + .tooltip1 {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip2 {
+  position: absolute;
+  top: 130%;
+  left:60%;
+  transform: translateX(-50%);
+  background-color: #0056b3;
+  color: white;
+  padding: 4px 0px;
+  border-radius: 2px;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 9999;
+  width: 60px;
+  height: 18px;
+  font-size: 10px;
+  text-align: center;
+  visibility: hidden;
+}
+.preview_buttons button:nth-of-type(2):hover ~ .tooltip2,
+.preview_buttons button:nth-of-type(3):hover ~ .tooltip2 {
+  opacity: 1;
+  visibility: visible;
 }
 
 @media screen and (max-width: 1113px) {
