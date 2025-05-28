@@ -7,7 +7,7 @@ import { useState } from "react";
 // import { MoonFilled } from "@ant-design/icons";
 
 export const UIPreview = () => {
-  const { Preview, Content, editorRef, showPreview } = useContext(htmlCode);
+  const { Preview, Content } = useContext(htmlCode);
   const iframeRef = useRef(null);
   const [fill, setFill] = useState(() => {
     const savedFill = localStorage.getItem("fill");
@@ -20,17 +20,16 @@ export const UIPreview = () => {
   });
 
   function toggleMode() {
-  setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-  setFill((prevFill) => !prevFill);
-}
-useEffect(() => {
-  localStorage.setItem('mode', mode);
-}, [mode]);
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    setFill(!fill);
+  }
+  useEffect(() => {
+    localStorage.setItem("mode", mode);
+  }, [mode]);
 
-useEffect(() => {
-  localStorage.setItem('fill', JSON.stringify(fill));
-}, [fill]);
-
+  useEffect(() => {
+    localStorage.setItem("fill", JSON.stringify(fill));
+  }, [fill]);
 
   function generateContent() {
     return `
